@@ -2,22 +2,18 @@ fragment OrgAttributes on Org {
     nr
     logoUrl
     phone
+    address
+    zipCode
+    city
+    state
+    country
+    lat
+    lng
 
     _id
     name
     shortname
-    addresses {
-        address
-        zipCode
-        city
-        state
-        country
-        lat
-        lng
-        type
-        status
-        description
-    }
+
     type
     status
     description

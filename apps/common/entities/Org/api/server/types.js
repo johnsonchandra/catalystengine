@@ -17,25 +17,19 @@ export default `
     Closed
   }
   
-  type Address {
+  type Org {
+    ${commonFields}
+    nr: String
+    logoUrl: String
     address: String
     zipCode: String
     city: String
     state: String
     country: String
+    phone: String
     lat: Float
     lng: Float
-    type: String
-    status: String
-    description: String
-  }
-  
-  type Org {
-    ${commonFields}
-    nr: String
-    addresses: [Address]
-    phone: String
-    logoUrl: String
+    
     type: OrgType
     status: OrgStatus
     
@@ -49,7 +43,13 @@ export default `
     nr: String
     name: String
     shortname: String
+    address: String
+    zipCode: String
+    city: String
+    state: String
+    country: String
     phone: String
+    
     type: String
     
     description: String
