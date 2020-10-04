@@ -99,6 +99,7 @@ const getOrgJSONdefs = (publishName, props) => {
         nr: 1,
         name: 1,
         shortname: 1,
+        addresses: 1,
         phone: 1,
         featureNr: 1,
         sequenceNr: 1,
