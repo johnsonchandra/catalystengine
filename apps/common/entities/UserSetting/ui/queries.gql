@@ -1,0 +1,25 @@
+query userSettings {
+  userSettings {
+    _id
+    host
+    isGDPR
+    key
+    label
+    type
+    value
+    setByUser
+  }
+}
+
+query userSettingsAll {
+  userSettingsAll {
+    _id
+    host
+    isGDPR
+    key
+    label
+    type
+    value
+    setByUser
+  }
+}

@@ -1,0 +1,23 @@
+#import "./fragments.gql"
+
+mutation updateFile($inputFile: FileInput) {
+  updateFile(inputFile: $inputFile) {
+    ...FileAttributes
+  }
+}
+mutation removeFile($_id: String!) {
+  removeFile(_id: $_id) {
+    _id
+  }
+}
+
+mutation setFileStatusToActive($_id: String!, $description: String) {
+  setFileStatusToActive(_id: $_id, description: $description) {
+    _id
+  }
+}
+mutation setFileStatusToClosed($_id: String!, $description: String) {
+  setFileStatusToClosed(_id: $_id, description: $description) {
+    _id
+  }
+}

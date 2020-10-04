@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailCounter($_id: String) {
+  detailCounter(_id: $_id) {
+    ...CounterAttributes
+  }
+}

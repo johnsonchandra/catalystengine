@@ -1,0 +1,29 @@
+#import "./fragments.gql"
+
+mutation addDocument {
+  addDocument {
+    ...DocumentAttributes
+  }
+}
+mutation updateDocument($inputDocument: DocumentInput) {
+  updateDocument(inputDocument: $inputDocument) {
+    ...DocumentAttributes
+  }
+}
+mutation removeDocument($_id: String!) {
+  removeDocument(_id: $_id) {
+    _id
+  }
+}
+
+mutation setDocumentStatusToActive($_id: String!, $description: String) {
+  setDocumentStatusToActive(_id: $_id, description: $description) {
+    _id
+  }
+}
+mutation setDocumentStatusToClosed($_id: String!, $description: String) {
+  setDocumentStatusToClosed(_id: $_id, description: $description) {
+    _id
+  }
+}
+

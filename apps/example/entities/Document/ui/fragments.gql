@@ -1,0 +1,36 @@
+fragment DocumentAttributes on Document {
+    nr
+    trxDate
+    amount
+
+    _id
+    name
+    type
+    status
+    description
+    createdBy
+    createdAt
+    updatedBy
+    updatedAt
+
+    Files {
+        _id
+        name
+        localUrl
+        cloudUrl
+        size
+        mimeType
+        type
+        status
+    }
+
+    histories {
+        party {
+            _id
+            type
+            name
+        }
+        description
+        timestamp
+    }
+}

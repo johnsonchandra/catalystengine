@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailTenant($_id: String) {
+  detailTenant(_id: $_id) {
+    ...TenantAttributes
+  }
+}

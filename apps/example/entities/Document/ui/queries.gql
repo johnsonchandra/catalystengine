@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailDocument($_id: String) {
+  detailDocument(_id: $_id) {
+    ...DocumentAttributes
+  }
+}

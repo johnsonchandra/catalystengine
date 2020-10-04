@@ -1,0 +1,24 @@
+fragment UserAttributes on User {
+  _id
+  fullname
+  shortname
+  emailAddress
+  phone
+
+  roles {
+    name
+    value
+    defaultChecked
+  }
+
+  settings {
+      _id
+      isGDPR
+      key
+      label
+      type
+      value
+      updatedAt
+      setByUser
+  }
+}

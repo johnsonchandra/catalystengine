@@ -1,0 +1,7 @@
+node_modules
+settings-staging.json
+settings-production.json
+.vscode
+.DS_Store
+.idea
+.files

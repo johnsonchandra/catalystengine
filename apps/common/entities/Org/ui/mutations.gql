@@ -1,0 +1,36 @@
+#import "./fragments.gql"
+
+mutation addOrg {
+  addOrg {
+    ...OrgAttributes
+  }
+}
+mutation updateOrg($inputOrg: OrgInput) {
+  updateOrg(inputOrg: $inputOrg) {
+    ...OrgAttributes
+  }
+}
+mutation removeOrg($_id: String!) {
+  removeOrg(_id: $_id) {
+    _id
+  }
+}
+
+mutation updateOrgRoles($party: OrgInput) {
+  updateOrgRoles(party: $party) {
+    ...OrgAttributes
+  }
+}
+
+
+mutation setOrgStatusToActive($_id: String!, $description: String) {
+  setOrgStatusToActive(_id: $_id, description: $description) {
+    _id
+  }
+}
+mutation setOrgStatusToClosed($_id: String!, $description: String) {
+  setOrgStatusToClosed(_id: $_id, description: $description) {
+    _id
+  }
+}
+

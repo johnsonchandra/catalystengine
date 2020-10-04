@@ -1,0 +1,29 @@
+#import "./fragments.gql"
+
+mutation addTenant {
+  addTenant {
+    ...TenantAttributes
+  }
+}
+mutation updateTenant($inputTenant: TenantInput) {
+  updateTenant(inputTenant: $inputTenant) {
+    ...TenantAttributes
+  }
+}
+mutation removeTenant($_id: String!) {
+  removeTenant(_id: $_id) {
+    _id
+  }
+}
+
+mutation setTenantStatusToActive($_id: String!, $description: String) {
+  setTenantStatusToActive(_id: $_id, description: $description) {
+    _id
+  }
+}
+mutation setTenantStatusToClosed($_id: String!, $description: String) {
+  setTenantStatusToClosed(_id: $_id, description: $description) {
+    _id
+  }
+}
+

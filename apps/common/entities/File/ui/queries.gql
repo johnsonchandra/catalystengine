@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailFile($_id: String) {
+  detailFile(_id: $_id) {
+    ...FileAttributes
+  }
+}

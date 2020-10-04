@@ -1,0 +1,27 @@
+#import "./fragments.gql"
+
+query detailUser($_id: String) {
+  detailUser(_id: $_id) {
+    ...UserAttributes
+  }
+}
+
+query listUserSettingsByHost{
+  listUserSettingsByHost {
+    _id
+    host
+    isGDPR
+    key
+    label
+    type
+    value
+    setByUser
+  }
+}
+
+
+query exportUserData {
+  exportUserData {
+    zip
+  }
+}

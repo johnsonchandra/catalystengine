@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailOrg($_id: String) {
+  detailOrg(_id: $_id) {
+    ...OrgAttributes
+  }
+}

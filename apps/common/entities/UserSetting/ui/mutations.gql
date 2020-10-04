@@ -1,0 +1,29 @@
+mutation addUserSetting($setting: UserSettingInput) {
+  addUserSetting(setting: $setting) {
+    _id
+    host
+    isGDPR
+    key
+    label
+    type
+    value
+  }
+}
+
+mutation updateUserSetting($setting: UserSettingInput) {
+  updateUserSetting(setting: $setting) {
+    _id
+    host
+    isGDPR
+    key
+    label
+    type
+    value
+  }
+}
+
+mutation removeUserSetting($_id: String!, $host: String) {
+  removeUserSetting(_id: $_id, host: $host) {
+    _id
+  }
+}
