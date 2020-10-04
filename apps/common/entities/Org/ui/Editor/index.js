@@ -13,6 +13,11 @@ class OrgEditor extends React.Component {
       name: form.name.value,
       shortname: form.shortname.value,
       phone: form.phone.value,
+      address: form.address.value,
+      zipCode: form.zipCode.value,
+      city: form.city.value,
+      state: form.state.value,
+      country: form.country.value,
       type: form.type.value,
       description: form.description.value,
     };
@@ -62,6 +67,9 @@ class OrgEditor extends React.Component {
             phone: {
               required: true,
             },
+            address: {
+              required: true,
+            },
             type: {
               required: true,
             },
@@ -72,6 +80,9 @@ class OrgEditor extends React.Component {
             },
             phone: {
               required: 'Please fill Phone number',
+            },
+            address: {
+              required: 'Please fill Address',
             },
             type: {
               required: 'Please fill type of Organization',
@@ -122,6 +133,76 @@ class OrgEditor extends React.Component {
                         autoComplete="off"
                         className="form-control"
                         defaultValue={doc && doc.shortname}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>Address</ControlLabel>
+                      <textarea
+                        rows={3}
+                        name="address"
+                        className="form-control"
+                        defaultValue={doc && doc.address}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>Zip Code</ControlLabel>
+                      <input
+                        type="text"
+                        name="zipCode"
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={doc && doc.zipCode}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>City/Area</ControlLabel>
+                      <input
+                        type="text"
+                        name="city"
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={doc && doc.city}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>State</ControlLabel>
+                      <input
+                        type="text"
+                        name="state"
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={doc && doc.state}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>Country</ControlLabel>
+                      <input
+                        type="text"
+                        name="country"
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={doc && doc.country}
                         disabled={disabled}
                       />
                     </FormGroup>
@@ -191,18 +272,11 @@ class OrgEditor extends React.Component {
               {doc.status !== 'Draft' && (
                 <Col xs={12} md={6}>
                   <Row>
-                    <Col xs={6} md={6}>
-                      <FormGroup>
-                        <ControlLabel>Type</ControlLabel>
-                        <input
-                          type="text"
-                          name="type"
-                          className="form-control"
-                          defaultValue={doc && doc.type}
-                          disabled
-                        />
-                      </FormGroup>
+                    <Col xs={12} md={12}>
+                      <p>FIXME Show Map here</p>
                     </Col>
+                  </Row>
+                  <Row>
                     <Col xs={6} md={6}>
                       <FormGroup>
                         <ControlLabel>Status</ControlLabel>
