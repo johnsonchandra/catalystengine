@@ -3,13 +3,14 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
 import Tenant from '../../../entities/Tenant/api';
+import UserLogin from '../../../entities/UserLogin/api';
 
 import parseHost from '../../../helpers/parseHost';
 import parseDotToUnderscore from '../../../helpers/parseDotToUnderscore';
 
 import UserSetting from '../../../entities/UserSetting/api';
 
-// TODO coba lihat apa yg terjadi bila login dari mobile hehehe
+// TODO see whether it works if login from mobile app
 Accounts.onLogin((options) => {
   const host = parseHost(options.connection.httpHeaders.host);
   const tenant = Tenant.findOne({ host });
@@ -19,20 +20,17 @@ Accounts.onLogin((options) => {
 
   const timestamp = new Date();
 
-  const modifier = {
-    $push: {
-      // FIXME dicap, tulis juga ke log tersendiri dengan tipe Login
-      lastLogins: {
-        host,
-        timestamp,
-        clientAddress: options.connection.clientAddress,
-        httpHeaders: options.connection.httpHeaders,
-      },
-    },
-  };
+  UserLogin.insert({
+    userId: options.user._id,
+    host,
+    timestamp,
+    clientAddress: options.connection.clientAddress,
+    httpHeaders: options.connection.httpHeaders,
+  });
 
   const hostDotToUnderscore = parseDotToUnderscore(host);
 
+  const modifier = {};
   modifier.$set = {};
   modifier.$set[`hosts.${hostDotToUnderscore}.visit.last`] = {
     clientAddress: options.connection.clientAddress,

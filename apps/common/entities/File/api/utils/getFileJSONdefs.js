@@ -25,7 +25,7 @@ const getFileJSONdefs = (publishName, props) => {
       query: { status: 'Closed' },
       queryOr: queryOr(props),
     },
-    // FIXME belum ada pub maupun gql query, just preparing
+    // FIXME no pub nor gql query, just preparing
     listFileByRef: {
       query: {
         status: 'Active',

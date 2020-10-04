@@ -7,7 +7,7 @@
 // // import parseHost from '../../../modules/parseHost';
 // // import parseDotToUnderscore from '../../../modules/parseDotToUnderscore';
 //
-// // TODO coba lihat apa yg terjadi bila login dari mobile hehehe
+// // TODO see whether it works if login from mobile app
 // Accounts.onLogout((options) => {
 //   console.info('options in onLogout', options);
 //

@@ -7,7 +7,7 @@ export default (Collection, index, options) => {
     Collection.rawCollection().createIndex(index, options);
   } else {
     console.warn(
-      '[/modules/server/createIndex.js] Must pass a MongoDB collection instance to define index on.',
+      '[/helpers/server/createIndex.js] Must pass a MongoDB collection instance to define index on.',
     );
   }
 };

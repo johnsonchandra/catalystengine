@@ -6,7 +6,7 @@ import { iso } from '../../helpers/dates.js';
 
 const baseUrl = Meteor.absoluteUrl();
 
-// FIXME ini sesuaikan dengan route
+// FIXME adjust to routes based on app
 // NOTE: Slashes are omitted at front because it comes with baseUrl.
 const routes = [
   { base: 'signup' },
