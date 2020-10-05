@@ -22,7 +22,7 @@ Accounts.onLogin((options) => {
 
   UserLog.insert({
     userId: options.user._id,
-    host,
+    host: `${host}`,
     timestamp,
     clientAddress: options.connection.clientAddress,
     httpHeaders: options.connection.httpHeaders,
