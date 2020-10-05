@@ -1,7 +1,16 @@
+import UserLog from '../../entities/UserLog/api';
+
 const entityInsert = (Entity, doc, description, party, owner, now) => {
   const timestamp = now || new Date();
 
-  // FIXME please write to log later on
+  UserLog.insert({
+    userId: party._id,
+    ...doc,
+    owner,
+    description,
+    timestamp,
+    type: 'entityInsert',
+  });
 
   return Entity.insert({
     ...doc,

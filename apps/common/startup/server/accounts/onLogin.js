@@ -3,7 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
 import Tenant from '../../../entities/Tenant/api';
-import UserLogin from '../../../entities/UserLogin/api';
+import UserLog from '../../../entities/UserLog/api';
 
 import parseHost from '../../../helpers/parseHost';
 import parseDotToUnderscore from '../../../helpers/parseDotToUnderscore';
@@ -20,12 +20,13 @@ Accounts.onLogin((options) => {
 
   const timestamp = new Date();
 
-  UserLogin.insert({
+  UserLog.insert({
     userId: options.user._id,
     host,
     timestamp,
     clientAddress: options.connection.clientAddress,
     httpHeaders: options.connection.httpHeaders,
+    type: 'Login',
   });
 
   const hostDotToUnderscore = parseDotToUnderscore(host);

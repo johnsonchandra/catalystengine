@@ -1,7 +1,17 @@
+import UserLog from '../../entities/UserLog/api';
+
 const entityAddToSet = (Entity, condition, doc, description, party, now, options) => {
   const timestamp = now || new Date();
 
-  // FIXME please write to log later on
+  UserLog.insert({
+    userId: party._id,
+    condition,
+    ...doc,
+    options,
+    description,
+    timestamp,
+    type: 'entityAddToSet',
+  });
 
   return Entity.update(
     condition,
