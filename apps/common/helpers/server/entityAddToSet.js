@@ -5,8 +5,8 @@ const entityAddToSet = (Entity, condition, doc, description, party, now, options
 
   UserLog.insert({
     userId: party._id,
-    condition,
-    ...doc,
+    condition: JSON.stringify(condition),
+    doc: JSON.stringify(doc),
     options,
     description,
     timestamp,

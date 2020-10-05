@@ -5,7 +5,7 @@ const entityInsert = (Entity, doc, description, party, owner, now) => {
 
   UserLog.insert({
     userId: party._id,
-    ...doc,
+    doc: JSON.stringify(doc),
     owner,
     description,
     timestamp,

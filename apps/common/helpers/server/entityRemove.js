@@ -7,7 +7,7 @@ const entityRemove = (Entity, condition, description, party, now) => {
 
   UserLog.insert({
     userId: party._id,
-    condition,
+    condition: JSON.stringify(condition),
     description,
     timestamp,
     type: 'entityRemove',

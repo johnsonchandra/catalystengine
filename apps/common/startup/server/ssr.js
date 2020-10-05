@@ -20,8 +20,6 @@ const Apps = {
   'common.maya': CommonApp,
   'example.maya': ExampleApp,
   localhost: ExampleApp,
-  'backoffice.staging.labkulit.com': CommonApp,
-  'frontend.staging.labkulit.com': ExampleApp,
 };
 
 onPageLoad(async (sink) => {
