@@ -28,7 +28,8 @@ export default `
     _id: String
     type: PartyType
     name: String
-    cloudUrl: String
+    shortname: String
+    logoUrl: String
     latitude: Float
     longitude: Float
     description: String
