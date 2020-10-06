@@ -2,7 +2,7 @@
   "public": {
     "hostForce": "",
     "graphQL": {
-      "httpUri": "http://192.168.100.100:3000/graphql"
+      "httpUri": "http://localhost:3000/graphql"
     },
     "productName": "Catalyst Engine",
     "copyrightStartYear": "2020"

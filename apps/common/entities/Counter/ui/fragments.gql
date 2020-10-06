@@ -1,7 +1,5 @@
 fragment CounterAttributes on Counter {
-    nr
-    trxDate
-    amount
+    counter
 
     _id
     name
@@ -12,17 +10,6 @@ fragment CounterAttributes on Counter {
     createdAt
     updatedBy
     updatedAt
-
-    Files {
-        _id
-        name
-        localUrl
-        cloudUrl
-        size
-        mimeType
-        type
-        status
-    }
 
     histories {
         party {

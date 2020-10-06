@@ -4,17 +4,14 @@ import { Button, Col, ControlLabel, FormGroup, Row } from 'react-bootstrap';
 
 import Validation from '../../../../ui/components/Validation';
 
-import { iso } from '../../../../helpers/dates';
-
 class CounterEditor extends React.Component {
   handleSubmit = (form) => {
     const { doc, updateDoc } = this.props;
 
     const newDoc = {
-      nr: form.nr.value,
       name: form.name.value,
-      trxDate: form.trxDate.value,
-      amount: parseFloat(form.amount.value),
+      counter: parseInt(form.counter.value, 10),
+      type: form.type.value,
       description: form.description.value,
     };
 
@@ -51,39 +48,27 @@ class CounterEditor extends React.Component {
   };
 
   render() {
-    const { doc, disabled, settings } = this.props;
+    const { doc, disabled } = this.props;
 
     return (
       <React.Fragment>
         <Validation
           rules={{
-            nr: {
+            type: {
               required: true,
             },
-            name: {
-              required: true,
-            },
-            trxDate: {
-              required: true,
-            },
-            amount: {
+            counter: {
               required: true,
               number: true,
             },
           }}
           messages={{
-            nr: {
-              required: 'Harap mengisi Nomor Counter',
+            type: {
+              required: 'Please input type of Counter',
             },
-            name: {
-              required: 'Harap mengisi Nama Counter',
-            },
-            trxDate: {
-              required: 'Harap mengisi Tanggal Counter',
-            },
-            amount: {
-              required: 'Harap mengisi Jumlah',
-              number: 'Jumlah harus angka',
+            counter: {
+              required: 'Please input start counter in integer',
+              number: 'start counter must be in integer',
             },
           }}
           submitHandler={(form) => this.handleSubmit(form)}
@@ -94,22 +79,7 @@ class CounterEditor extends React.Component {
                 <Row>
                   <Col xs={12}>
                     <FormGroup>
-                      <ControlLabel>Nomor Counter</ControlLabel>
-                      <input
-                        type="text"
-                        name="nr"
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={doc && doc.nr}
-                        disabled={disabled}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row>
-                  <Col xs={12}>
-                    <FormGroup>
-                      <ControlLabel>Nama Counter</ControlLabel>
+                      <ControlLabel>Counter Name</ControlLabel>
                       <input
                         type="text"
                         name="name"
@@ -124,28 +94,24 @@ class CounterEditor extends React.Component {
                 <Row>
                   <Col xs={6}>
                     <FormGroup>
-                      <ControlLabel>Jumlah</ControlLabel>
+                      <ControlLabel>Counter start</ControlLabel>
                       <input
                         type="number"
-                        name="amount"
+                        name="counter"
                         className="form-control"
-                        defaultValue={doc && doc.amount}
+                        defaultValue={doc && doc.counter}
                         disabled={disabled}
                       />
                     </FormGroup>
                   </Col>
                   <Col xs={6}>
                     <FormGroup>
-                      <ControlLabel>Tgl. Transaksi</ControlLabel>
+                      <ControlLabel>Type</ControlLabel>
                       <input
-                        type="datetime-local"
-                        name="trxDate"
+                        type="text"
+                        name="type"
                         className="form-control"
-                        defaultValue={
-                          doc &&
-                          doc.trxDate &&
-                          iso(doc.trxDate, settings.timezone, 'YYYY-MM-DD[T]HH:mm')
-                        }
+                        defaultValue={doc && doc.type}
                         disabled={disabled}
                       />
                     </FormGroup>
@@ -223,7 +189,6 @@ CounterEditor.propTypes = {
   updateDoc: PropTypes.func.isRequired,
   removeDoc: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
-  settings: PropTypes.object.isRequired,
 };
 
 export default CounterEditor;

@@ -2,7 +2,8 @@ const getCounterJSONdefs = (publishName, props) => {
   const queryOr = (options) => [
     { _id: options && options.search },
     { name: options && options.search },
-    { host: options && options.search },
+    { counter: options && options.search },
+    { type: options && options.search },
   ];
 
   const defs = {

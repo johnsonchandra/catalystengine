@@ -15,8 +15,7 @@ const action = (args, party, tenant) => {
 
   const newDoc = {
     name: args.name,
-    trxDate: now,
-    type: 'Manual',
+    counter: 1,
     status: 'Draft',
   };
 

@@ -25,7 +25,6 @@ import TenantQueries from '../../apps/common/entities/Tenant/api/server/queries'
 import TenantMutations from '../../apps/common/entities/Tenant/api/server/mutations';
 
 import '../../apps/common/entities/Counter/api/server';
-import '../../apps/common/entities/Counter/api/server/methods';
 import '../../apps/common/entities/Counter/api/server/publications';
 import CounterTypes from '../../apps/common/entities/Counter/api/server/types';
 import CounterQueries from '../../apps/common/entities/Counter/api/server/queries';

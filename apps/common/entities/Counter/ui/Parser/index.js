@@ -4,23 +4,8 @@ import { iso } from '../../../../helpers/dates';
 const CounterParser = (docs, settings) => {
   return parseDocs(docs, [
     { from: '_id', to: '_id' },
-    { from: 'nr', to: 'nr' },
     { from: 'name', to: 'name' },
-    {
-      from: (doc) =>
-        doc.amount &&
-        doc.amount.toLocaleString('id', {
-          style: 'currency',
-          currency: doc.currency || settings.currency || 'IDR',
-          maximumFractionDigits: settings.maximumFractionDigits,
-          minimumFractionDigits: settings.minimumFractionDigits,
-        }),
-      to: 'Amount',
-    },
-    {
-      from: (doc) => doc.trxDate && iso(doc.trxDate, settings.timezone, 'LLLL'),
-      to: 'trxDate',
-    },
+    { from: 'counter', to: 'counter' },
     { from: 'type', to: 'type' },
     { from: 'status', to: 'status' },
     {

@@ -56,10 +56,8 @@ class CounterEditPage extends React.Component {
               {' Show QR-Code'}
             </MenuItem>
             {data.detailCounter &&
-              data.detailCounter.nr &&
-              data.detailCounter.name &&
-              data.detailCounter.amount &&
-              data.detailCounter.trxDate &&
+              data.detailCounter.counter &&
+              data.detailCounter.type &&
               data.detailCounter.status === 'Draft' && (
                 <React.Fragment>
                   <MenuItem divider />
