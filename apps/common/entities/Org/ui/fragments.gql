@@ -7,8 +7,9 @@ fragment OrgAttributes on Org {
     city
     state
     country
-    lat
-    lng
+
+    latitude
+    longitude
 
     _id
     name

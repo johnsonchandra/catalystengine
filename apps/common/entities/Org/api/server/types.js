@@ -27,8 +27,8 @@ export default `
     state: String
     country: String
     phone: String
-    lat: Float
-    lng: Float
+    latitude: Float
+    longitude: Float
     
     type: OrgType
     status: OrgStatus
@@ -49,6 +49,9 @@ export default `
     state: String
     country: String
     phone: String
+    
+    latitude: Float
+    longitude: Float
     
     type: String
     
