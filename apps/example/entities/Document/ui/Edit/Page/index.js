@@ -120,7 +120,7 @@ export default compose(
     options: ({ history }) => ({
       onCompleted: () => {
         Bert.alert('Document deleted!', 'success');
-        history.push('/Document/Draft');
+        history.push('/Document/draft');
       },
       onError: (error) => {
         Bert.alert(error.message, 'danger');
@@ -136,7 +136,7 @@ export default compose(
       },
       onCompleted: () => {
         Bert.alert('Document Status set to Active!', 'success');
-        history.push('/Document');
+        history.push('/Document/current');
       },
       onError: (error) => {
         Bert.alert(error.message, 'danger');
