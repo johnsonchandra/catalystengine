@@ -95,6 +95,7 @@ const schema = {
       listUserByOrg: [User]
       listUserSettingsByHost: [UserSetting]
       exportUserData: UserExportDataZip
+      getUser: Party
 
       ## UserSetting
       userSettings: [UserSetting]

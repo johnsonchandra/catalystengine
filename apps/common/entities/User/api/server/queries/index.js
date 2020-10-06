@@ -1,3 +1,5 @@
+import { Meteor } from 'meteor/meteor';
+
 import detailUser from './detailUser';
 import exportUserData from './exportUserData';
 
@@ -32,4 +34,19 @@ export default {
     exportUserData({
       user,
     }),
+
+  getUser: (parent) => {
+    const userIdToQuery = parent && (parent.PartyId || parent.BuyerId);
+    if (!userIdToQuery) return undefined;
+
+    const user = Meteor.users.findOne(userIdToQuery);
+    if (!user) return undefined;
+
+    return {
+      _id: userIdToQuery,
+      name: user.profile.fullname,
+      shortname: user.profile.shortname,
+      type: 'Member',
+    };
+  },
 };
