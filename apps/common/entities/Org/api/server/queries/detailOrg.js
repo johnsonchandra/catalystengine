@@ -1,4 +1,4 @@
-import Org from '../../index';
+import Org from '../..';
 
 import parseHost from '../../../../../helpers/parseHost';
 import getTenant from '../../../../../helpers/getTenant';

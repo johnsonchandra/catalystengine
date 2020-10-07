@@ -109,6 +109,7 @@ const schema = {
 
       ## Org
       detailOrg(_id: String): Org
+      getOrg: Party
 
       ## File
       detailFile(_id: String!): File
