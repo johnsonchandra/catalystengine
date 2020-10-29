@@ -3,16 +3,14 @@ import Document from '../../index';
 import entityUpdate from '../../../../../../common/helpers/server/entityUpdate';
 
 const processDocumentToClosed = (document, tenant, party) => {
-  let timestamp = new Date();
+  if (document.status === 'Processing')
+    throw new Error('Document is in other process. Please wait and repeat');
 
-  // add additional steps here if necessary
-  // if (
-  //   !(
-  //     setRelatedAccountsToProcessing(document, accountMovements, tenant, party, timestamp) &&
-  //     setRelatedAccountMovementsToProcessing(document, accountMovements, tenant, party, timestamp)
-  //   )
-  // )
-  //   return Document.findOne(document._id);
+  // if (!(document.status === 'Active' || document.status === 'Delivering'))
+  if (document.status !== 'Active')
+    throw new Error(`Document status: ${document.status} may not be set to Closed`);
+
+  let timestamp = new Date();
 
   // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
   entityUpdate(
@@ -29,22 +27,11 @@ const processDocumentToClosed = (document, tenant, party) => {
   timestamp = new Date();
 
   // add additional steps here if necessary
-  // let postingDate = timestamp;
-  // if (tenant.settings.accountMovementMode === 'postingDate') {
-  //   const maxPostingDate = tenant.settings.thruDate;
-  //   maxPostingDate.setSeconds(maxPostingDate.getSeconds() - 1);
-  //   if (postingDate > maxPostingDate) postingDate = maxPostingDate;
-  // }
-  //
-  // accountMovements.forEach((accountMovement) => {
-  //   processAccountMovementToClosed(document, accountMovement, postingDate, tenant, party, timestamp);
-  // });
 
   entityUpdate(
     Document,
     { _id: document._id },
     {
-      // postingDate,
       status: 'Closed',
     },
     'Set Document to Closed',

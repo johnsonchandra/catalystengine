@@ -1,56 +1,29 @@
-import Document from '../../index';
+import Document from '../..';
 
-// import checkOptionsArgsId from '../../../../../../common/modules/checkOptionsArgsId';
-import parseHost from '../../../../../../common/helpers/parseHost';
-import getTenant from '../../../../../../common/helpers/getTenant';
 import getProjection from '../../../../../../common/helpers/getProjection';
-import checkOptions from '../../../../../../common/helpers/checkOptions';
-import checkAuth from '../../../../../../common/helpers/checkAuth';
-import parseMemberFromContext from '../../../../../../common/helpers/parseMemberFromContext';
 import ownerQuery from '../../../../../../common/helpers/ownerQuery';
 import parsePropsToQueryOptions from '../../../../../../common/helpers/parsePropsToQueryOptions';
+import authorizer from '../../../../../../common/helpers/server/authorizer';
 
 import getDocumentJSONdefs from '../../utils/getDocumentJSONdefs';
 
-const publishName = 'detailDocument';
-const action = (args, party, tenant) => {
-  // toggle this if you want to enforce args._id n findOne
-  // const query = {
-  //   ...getDocumentJSONdefs(publishName, args).query,
-  //   ...ownerQuery(tenant.owner),
-  // };
-  // const projection = getProjection(args);
-  // return Document.findOne(query, projection);
-
-  const { fields } = getDocumentJSONdefs(publishName, args);
-  const options = parsePropsToQueryOptions({ ...args, fields });
-
-  return args && args._id
-    ? Document.findOne(
-        {
-          ...getDocumentJSONdefs(publishName, args).query,
-          ...ownerQuery(tenant.owner),
-        },
-        getProjection(options),
-      )
-    : {};
+const action = (options, party, tenant) => {
+  const { _id, publishName } = options;
+  const { fields, query } = getDocumentJSONdefs(publishName, options);
+  const projection = getProjection(parsePropsToQueryOptions({ ...options, fields }));
+  const selector = {
+    ...query,
+    ...ownerQuery(tenant.owner),
+  };
+  return _id ? Document.findOne(selector, projection) : undefined;
 };
 
 const detailDocument = (options, resolve, reject) => {
+  const { publishName } = options;
   try {
-    // toggle this if you want to enforce args._id n findOne
-    // checkOptions(options, checkOptionsArgsId);
-
-    checkOptions(options);
-
-    const { context } = options;
-    const host = parseHost(context.headers.origin);
-    const roles = getDocumentJSONdefs(publishName).auth;
-
-    checkAuth(context.user, roles, host);
-
-    const party = parseMemberFromContext(context);
-    const tenant = getTenant(host);
+    // toggle this if you want to enforce checking args._id
+    // const { party, tenant } = authorizer(options, publishName, getDocumentJSONdefs, checkOptionsArgsId);
+    const { party, tenant } = authorizer(options, publishName, getDocumentJSONdefs);
 
     resolve(action(options, party, tenant));
   } catch (exception) {

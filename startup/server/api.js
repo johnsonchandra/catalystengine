@@ -119,6 +119,7 @@ const schema = {
       # start EXAMPLE
 
       detailDocument(_id: String): Document
+      getDocument(_id: String): Document
 
       # end EXAMPLE
     }
