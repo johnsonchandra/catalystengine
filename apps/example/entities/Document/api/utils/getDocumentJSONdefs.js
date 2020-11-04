@@ -7,11 +7,10 @@ const getDocumentJSONdefs = (publishName, props) => {
 
   const defs = {
     detailDocument: {
-      auth: ['member'],
+      auth: ['member', 'spv'],
       query: { _id: props && props._id },
     },
     getDocument: {
-      auth: ['member'],
       query: { _id: props && props._id },
       fields: {
         owner: 0,
@@ -23,25 +22,25 @@ const getDocumentJSONdefs = (publishName, props) => {
       },
     },
     listDocumentDraft: {
-      auth: ['member', 'spv'],
+      auth: ['user', 'member', 'spv'],
       query: { status: { $in: ['Draft', 'Queue'] } },
       queryOr: queryOr(props),
     },
     listDocumentCurrent: {
-      auth: ['member', 'spv'],
+      auth: ['user', 'member', 'spv'],
       query: { status: { $in: ['Processing', 'Active'] } },
       queryOr: queryOr(props),
     },
     listDocumentHistory: {
-      auth: ['spv'],
+      auth: ['member', 'spv'],
       query: { status: 'Closed' },
       queryOr: queryOr(props),
     },
     addDocument: {
-      auth: ['member'],
+      auth: ['user', 'member', 'spv'],
     },
     updateDocument: {
-      auth: ['member'],
+      auth: ['user', 'member', 'spv'],
     },
     removeDocument: {
       auth: ['spv'],
