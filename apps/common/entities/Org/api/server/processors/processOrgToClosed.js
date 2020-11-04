@@ -1,10 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 
-import Org from '../../index';
+import Org from '../..';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
 const processOrgToClosed = (org, tenant, party) => {
+  if (org.status === 'Processing')
+    throw new Error('Org is in other process. Please wait and repeat');
+
+  if (org.status !== 'Active')
+    throw new Error(`Org status: ${org.status} may not be set to Closed`);
+
   // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
   entityUpdate(
     Org,

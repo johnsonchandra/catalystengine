@@ -6,6 +6,13 @@ import entityUpdate from '../../../../../helpers/server/entityUpdate';
 import parseDotToUnderscore from '../../../../../helpers/parseDotToUnderscore';
 
 const processOrgToActive = (org, tenant, party) => {
+  // now do last check
+  if (org.status === 'Processing')
+    throw new Error('Trx is in other process. Please wait and repeat');
+
+  if (!(org.status === 'Draft' || org.status === 'Queue'))
+    throw new Error(`Org status: ${org.status} may not be set to Active`);
+
   // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
   entityUpdate(
     Org,
