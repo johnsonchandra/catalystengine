@@ -5,7 +5,11 @@
       "httpUri": "http://localhost:3000/graphql"
     },
     "productName": "Catalyst Engine",
-    "copyrightStartYear": "2020"
+    "copyrightStartYear": "2020",
+    "default": {
+      "logoUrl": "/common/img/50x50.png",
+      "imgUrl": "/common/img/370x370.png"
+    }
   },
   "private": {
     "MAIL_URL": "",

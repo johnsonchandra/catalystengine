@@ -16,7 +16,7 @@ const authorizer = (options, publishName, entityJSONDefs, additionalCheckFunctio
   const party = parseMemberFromContext(context);
   const tenant = getTenant(host);
 
-  return { party, tenant };
+  return { party, tenant, host };
 };
 
 export default authorizer;
