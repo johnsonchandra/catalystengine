@@ -10,18 +10,33 @@ const getFileJSONdefs = (publishName, props) => {
   ];
 
   const defs = {
+    detailFile: {
+      auth: ['user', 'member', 'spv'],
+      query: { _id: props && props._id },
+    },
+    getFile: {
+      query: { _id: props && props._id },
+      fields: {
+        owner: 0,
+        createdBy: 0,
+        createdAt: 0,
+        updatedBy: 0,
+        updatedAt: 0,
+        histories: 0,
+      },
+    },
     listFileDraft: {
-      auth: ['member', 'spv'],
+      auth: ['user', 'member', 'spv'],
       query: { status: { $in: ['Draft', 'Queue'] } },
       queryOr: queryOr(props),
     },
     listFileCurrent: {
-      auth: ['member', 'spv'],
+      auth: ['user', 'member', 'spv'],
       query: { status: { $in: ['Processing', 'Active'] } },
       queryOr: queryOr(props),
     },
     listFileHistory: {
-      auth: ['spv'],
+      auth: ['member', 'spv'],
       query: { status: 'Closed' },
       queryOr: queryOr(props),
     },
@@ -33,22 +48,17 @@ const getFileJSONdefs = (publishName, props) => {
         'refs.type': props && props.refs && props.refs.type,
       },
     },
-    detailFile: {
-      auth: ['member'],
-      query: { _id: props && props._id },
-      // fields: {} add if needed
-    },
     addFile: {
-      auth: ['member'],
+      auth: ['user', 'member', 'spv'],
     },
     updateFile: {
-      auth: ['member'],
+      auth: ['user', 'member', 'spv'],
     },
     removeFile: {
       auth: ['spv'],
     },
     setFileStatusToActive: {
-      auth: ['spv'],
+      auth: ['member', 'spv'],
     },
     setFileStatusToClosed: {
       auth: ['spv'],

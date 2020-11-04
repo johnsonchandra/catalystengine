@@ -3,16 +3,13 @@ import File from '../../index';
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
 const processFileToActive = (file, tenant, party) => {
-  let timestamp = new Date();
+  if (file.status === 'Processing')
+    throw new Error('File is in other process. Please wait and repeat');
 
-  // add additional steps here if necessary
-  // if (
-  //   !(
-  //     setRelatedAccountsToProcessing(file, accountMovements, tenant, party, timestamp) &&
-  //     setRelatedAccountMovementsToProcessing(file, accountMovements, tenant, party, timestamp)
-  //   )
-  // )
-  //   return File.findOne(file._id);
+  if (!(file.status === 'Draft' || file.status === 'Queue'))
+    throw new Error(`File status: ${file.status} may not be set to Active`);
+
+  let timestamp = new Date();
 
   // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
   entityUpdate(
@@ -27,18 +24,6 @@ const processFileToActive = (file, tenant, party) => {
   );
 
   timestamp = new Date();
-
-  // add additional steps here if necessary
-  // let postingDate = timestamp;
-  // if (tenant.settings.accountMovementMode === 'postingDate') {
-  //   const maxPostingDate = tenant.settings.thruDate;
-  //   maxPostingDate.setSeconds(maxPostingDate.getSeconds() - 1);
-  //   if (postingDate > maxPostingDate) postingDate = maxPostingDate;
-  // }
-  //
-  // accountMovements.forEach((accountMovement) => {
-  //   processAccountMovementToActive(file, accountMovement, postingDate, tenant, party, timestamp);
-  // });
 
   entityUpdate(
     File,

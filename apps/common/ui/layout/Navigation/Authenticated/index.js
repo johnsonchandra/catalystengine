@@ -16,6 +16,11 @@ const CommonNavigationAuthenticated = ({ userId, name, roles, history }) => (
             Document
           </NavItem>
         </LinkContainer>
+        <LinkContainer to="/File">
+          <NavItem eventKey="File" href="/File">
+            File
+          </NavItem>
+        </LinkContainer>
       </Nav>
     )}
     <Nav pullRight>

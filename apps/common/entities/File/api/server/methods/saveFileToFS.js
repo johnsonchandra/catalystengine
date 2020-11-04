@@ -6,15 +6,14 @@ import { check, Match } from 'meteor/check';
 import fs from 'fs';
 import path from 'path';
 
-import File from '../../index';
-
 import parseHost from '../../../../../helpers/parseHost';
 import getTenant from '../../../../../helpers/getTenant';
-import entityInsert from '../../../../../helpers/server/entityInsert';
+import rateLimit from '../../../../../helpers/rateLimit';
+import createFile from '../processors/createFile';
 
 Meteor.methods({
   // FIXME right now no user right check, only login user
-  saveFileToFS(blob, filenameInput, mimeType, size) {
+  saveFileToFS: function saveFileToFS(blob, filenameInput, mimeType, size) {
     check(blob, Match.Any);
     check(filenameInput, String);
     check(mimeType, String);
@@ -60,15 +59,18 @@ Meteor.methods({
             localUrl: `files/${basePath}/${filename}`,
             size,
             mimeType,
-            type: 'Manual',
+            type: 'File',
             status: 'Draft',
           };
-
-          entityInsert(File, docFile, 'saveFileToFS creates new File', party, tenant.owner, now);
+          createFile(docFile, party, tenant);
         }),
       ),
     );
   },
 });
 
-// FIXME add ratelimiter here
+rateLimit({
+  methods: ['saveFileToFS'],
+  limit: 10,
+  timeRange: 100,
+});

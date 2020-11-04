@@ -5,6 +5,12 @@ export default {
     detailFile({
       context,
       _id: (parent && parent.FileId) || args._id,
-      // fields: {} add if needed, fields here has lower priority than fields in getJSONDefs
+      publishName: 'detailFile',
+    }),
+  getFile: (parent, args, context) =>
+    detailFile({
+      context,
+      _id: (parent && parent.FileId) || args._id,
+      publishName: 'getFile',
     }),
 };

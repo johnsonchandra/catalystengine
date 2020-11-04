@@ -6,7 +6,6 @@ export default `
     Queue
     Processing
     Active
-    Inactive
     Closed
   }
 

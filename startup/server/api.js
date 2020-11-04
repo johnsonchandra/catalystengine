@@ -113,7 +113,8 @@ const schema = {
       getOrg: Party
 
       ## File
-      detailFile(_id: String!): File
+      detailFile(_id: String): File
+      getFile(_id: String): File
 
       # end COMMON
 

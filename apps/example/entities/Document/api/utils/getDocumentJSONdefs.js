@@ -23,17 +23,17 @@ const getDocumentJSONdefs = (publishName, props) => {
     },
     listDocumentDraft: {
       auth: ['user', 'member', 'spv'],
-      query: { status: { $in: ['Draft', 'Queue'] } },
+      query: { status: { $in: ['Draft', 'Queue', 'Processing'] } },
       queryOr: queryOr(props),
     },
     listDocumentCurrent: {
       auth: ['user', 'member', 'spv'],
-      query: { status: { $in: ['Processing', 'Active'] } },
+      query: { status: { $in: ['Active'] } },
       queryOr: queryOr(props),
     },
     listDocumentHistory: {
       auth: ['member', 'spv'],
-      query: { status: 'Closed' },
+      query: { status: { $in: ['Closed', 'Void', 'Refund'] } },
       queryOr: queryOr(props),
     },
     addDocument: {

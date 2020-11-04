@@ -4,6 +4,7 @@ import { check } from 'meteor/check';
 import File from '../..';
 
 import getFileJSONdefs from '../../utils/getFileJSONdefs';
+
 import pubProcessor from '../../../../../helpers/server/pubProcessor';
 
 const publishName = 'listFileDraft';
