@@ -1,39 +1,30 @@
-import Counter from '../../index';
+import Counter from '../..';
 
-import checkOptionsArgsId from '../../../../../helpers/checkOptionsArgsId';
-import parseHost from '../../../../../helpers/parseHost';
-import getTenant from '../../../../../helpers/getTenant';
 import getProjection from '../../../../../helpers/getProjection';
-import checkOptions from '../../../../../helpers/checkOptions';
-import checkAuth from '../../../../../helpers/checkAuth';
-import parseMemberFromContext from '../../../../../helpers/parseMemberFromContext';
 import ownerQuery from '../../../../../helpers/ownerQuery';
 
 import getCounterJSONdefs from '../../utils/getCounterJSONdefs';
+import authorizer from '../../../../../helpers/server/authorizer';
+import getDocumentJSONdefs from '../../../../../../example/entities/Document/api/utils/getDocumentJSONdefs';
+import parsePropsToQueryOptions from '../../../../../helpers/parsePropsToQueryOptions';
 
-const publishName = 'detailCounter';
-const action = (args, party, tenant) => {
-  const query = {
-    ...getCounterJSONdefs(publishName, args).query,
+const action = (options, party, tenant) => {
+  const { _id, publishName } = options;
+  if (!_id) return undefined;
+
+  const { fields, query } = getDocumentJSONdefs(publishName, options);
+  const projection = getProjection(parsePropsToQueryOptions({ ...options, fields }));
+  const selector = {
+    ...query,
     ...ownerQuery(tenant.owner),
   };
-  const projection = getProjection(args);
-  return Counter.findOne(query, projection);
+  return Counter.findOne(selector, projection);
 };
 
 const detailCounter = (options, resolve, reject) => {
+  const { publishName } = options;
   try {
-    checkOptions(options, checkOptionsArgsId);
-
-    const { context } = options;
-    const host = parseHost(context.headers.origin);
-    const roles = getCounterJSONdefs(publishName).auth;
-
-    checkAuth(context.user, roles, host);
-
-    const party = parseMemberFromContext(context);
-    const tenant = getTenant(host);
-
+    const { party, tenant } = authorizer(options, publishName, getCounterJSONdefs);
     resolve(action(options, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);

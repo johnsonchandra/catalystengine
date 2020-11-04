@@ -106,6 +106,7 @@ const schema = {
 
       ## Counter
       detailCounter(_id: String): Counter
+      getCounter(_id: String): Counter
 
       ## Org
       detailOrg(_id: String): Org

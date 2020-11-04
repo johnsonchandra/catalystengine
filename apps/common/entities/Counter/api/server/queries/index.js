@@ -5,6 +5,12 @@ export default {
     detailCounter({
       context,
       _id: (parent && parent.CounterId) || args._id,
-      // fields: {} add if needed, fields here has lower priority than fields in getJSONDefs
+      publishName: 'detailCounter',
+    }),
+  getCounter: (parent, args, context) =>
+    detailCounter({
+      context,
+      _id: (parent && parent.CounterId) || args._id,
+      publishName: 'detailCounter',
     }),
 };

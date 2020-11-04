@@ -1,44 +1,16 @@
-import Counter from '../../index';
+import getDocumentJSONdefs from '../../../../../../example/entities/Document/api/utils/getDocumentJSONdefs';
 
-import parseHost from '../../../../../helpers/parseHost';
-import entityInsert from '../../../../../helpers/server/entityInsert';
-import getTenant from '../../../../../helpers/getTenant';
-import checkOptions from '../../../../../helpers/checkOptions';
-import checkAuth from '../../../../../helpers/checkAuth';
-import parseMemberFromContext from '../../../../../helpers/parseMemberFromContext';
+import authorizer from '../../../../../helpers/server/authorizer';
 
-import getCounterJSONdefs from '../../utils/getCounterJSONdefs';
+import createCounter from '../processors/createCounter';
 
 const publishName = 'addCounter';
-const action = (args, party, tenant) => {
-  const now = new Date();
-
-  const newDoc = {
-    name: args.name,
-    counter: 1,
-    status: 'Draft',
-  };
-
-  const _id = entityInsert(Counter, newDoc, 'Create new Counter', party, tenant.owner, now);
-
-  return Counter.findOne(_id);
-};
-
 const addCounter = (options, resolve, reject) => {
   try {
-    checkOptions(options);
+    const { party, tenant } = authorizer(options, publishName, getDocumentJSONdefs);
+    const { args } = options;
 
-    const { args, context } = options;
-
-    const host = parseHost(context.headers.origin);
-
-    const roles = getCounterJSONdefs(publishName).auth;
-    checkAuth(context.user, roles, host);
-
-    const party = parseMemberFromContext(context);
-    const tenant = getTenant(host);
-
-    resolve(action(args, party, tenant));
+    resolve(createCounter(args, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }
