@@ -6,7 +6,7 @@ const createDocument = (args, party, tenant) => {
   const now = new Date();
 
   const newDoc = {
-    name: args.name,
+    ...args,
     trxDate: now,
     type: 'Manual',
     status: 'Draft',
