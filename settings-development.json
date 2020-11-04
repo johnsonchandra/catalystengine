@@ -9,7 +9,8 @@
     "default": {
       "logoUrl": "/common/img/50x50.png",
       "imgUrl": "/common/img/370x370.png"
-    }
+    },
+    "perPage": 12
   },
   "private": {
     "MAIL_URL": "",

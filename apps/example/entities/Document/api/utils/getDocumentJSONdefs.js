@@ -46,7 +46,7 @@ const getDocumentJSONdefs = (publishName, props) => {
       auth: ['spv'],
     },
     setDocumentStatusToActive: {
-      auth: ['spv'],
+      auth: ['member', 'spv'],
     },
     setDocumentStatusToClosed: {
       auth: ['spv'],

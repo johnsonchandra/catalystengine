@@ -9,13 +9,15 @@ import getDocumentJSONdefs from '../../utils/getDocumentJSONdefs';
 
 const action = (options, party, tenant) => {
   const { _id, publishName } = options;
+  if (!_id) return undefined;
+
   const { fields, query } = getDocumentJSONdefs(publishName, options);
   const projection = getProjection(parsePropsToQueryOptions({ ...options, fields }));
   const selector = {
     ...query,
     ...ownerQuery(tenant.owner),
   };
-  return _id ? Document.findOne(selector, projection) : undefined;
+  return Document.findOne(selector, projection);
 };
 
 const detailDocument = (options, resolve, reject) => {
