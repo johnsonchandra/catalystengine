@@ -14,6 +14,7 @@ import authorizer from '../../../../../helpers/server/authorizer';
 
 import createFile from '../processors/createFile';
 import parseDotToUnderscore from '../../../../../helpers/parseDotToUnderscore';
+import parseFIleName from '../../../../../helpers/parseFIleName';
 
 Meteor.methods({
   saveFileToFS: function saveFileToFS(blob, filenameInput, mimeType, size) {
@@ -32,14 +33,6 @@ Meteor.methods({
     };
 
     const { party, host, tenant } = authorizer(options, 'saveFileToFS', getFileJSONdefs);
-
-    const name = `${filenameInput
-      .replace(/ /g, '_')
-      .replace(/ä/g, 'ae')
-      .replace(/ö/g, 'oe')
-      .replace(/ü/g, 'ue')
-      .replace(/ß/g, 'ss')}`;
-    // .replace(/[^a-z0-9_.]/g, '')}`;
 
     const filename = `${Random.id()}.${filenameInput.substring(
       filenameInput.lastIndexOf('.') + 1,
@@ -60,7 +53,7 @@ Meteor.methods({
           }
 
           const docFile = {
-            name,
+            name: parseFIleName(filenameInput),
             fsUrl: filePath,
             localUrl: `files/${basePath}/${filename}`,
             size,

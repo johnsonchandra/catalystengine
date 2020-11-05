@@ -10,11 +10,18 @@
       "logoUrl": "/common/img/50x50.png",
       "imgUrl": "/common/img/370x370.png"
     },
-    "perPage": 12
+    "perPage": 12,
+    "cloudUrl": ""
   },
   "private": {
     "MAIL_URL": "",
     "supportEmail": "Johnson Chandra <johnson.chandra@gmail.com>",
-    "rolesGlobal": ["user", "member", "spv", "admin"]
+    "rolesGlobal": ["user", "member", "spv", "admin"],
+    "s3": {
+      "accessKey": "",
+      "secretKey": "",
+      "bucket": "",
+      "region": ""
+    }
   }
 }

@@ -5,4 +5,4 @@ import './sitemap';
 import './graphql';
 import './ssr';
 import './files';
-// import './slingshot';
+import './slingshot';

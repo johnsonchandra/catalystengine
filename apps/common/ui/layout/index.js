@@ -77,13 +77,14 @@ import CounterHistoryListPage from '../../entities/Counter/ui/List/History/Page'
 import CounterDetailPage from '../../entities/Counter/ui/Detail/Page';
 import CounterEditPage from '../../entities/Counter/ui/Edit/Page';
 
-// Admin File pages
+// File pages
 import FileDraftListPage from '../../entities/File/ui/List/Draft/Page';
 import FileCurrentListPage from '../../entities/File/ui/List/Current/Page';
 import FileHistoryListPage from '../../entities/File/ui/List/History/Page';
 import FileDetailPage from '../../entities/File/ui/Detail/Page';
 import FileEditPage from '../../entities/File/ui/Edit/Page';
-import FileUploadPage from '../../entities/File/ui/Upload/Page';
+import FileUploadFSPage from '../../entities/File/ui/Upload/FS/Page';
+import FileUploadS3Page from '../../entities/File/ui/Upload/S3/Page';
 
 // Document pages
 import DocumentDraftListPage from '../../../example/entities/Document/ui/List/Draft/Page';
@@ -224,8 +225,17 @@ class CommonApp extends React.Component {
               <Authorized
                 exact
                 allowedRoles={['member', 'spv', 'admin']}
-                path="/File/upload"
-                component={FileUploadPage}
+                path="/File/FS/upload"
+                component={FileUploadFSPage}
+                setAfterLoginPath={setAfterLoginPath}
+                {...props}
+                {...state}
+              />
+              <Authorized
+                exact
+                allowedRoles={['member', 'spv', 'admin']}
+                path="/File/S3/upload"
+                component={FileUploadS3Page}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}

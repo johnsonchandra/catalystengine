@@ -6,7 +6,7 @@ import autoBind from 'react-autobind';
 
 import _ from 'lodash';
 
-class FileUploadPage extends React.Component {
+class FileUploadFSPage extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -100,8 +100,8 @@ class FileUploadPage extends React.Component {
   }
 }
 
-FileUploadPage.propTypes = {
+FileUploadFSPage.propTypes = {
   history: PropTypes.object.isRequired,
 };
 
-export default FileUploadPage;
+export default FileUploadFSPage;

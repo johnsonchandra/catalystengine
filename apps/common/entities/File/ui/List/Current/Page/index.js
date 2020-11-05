@@ -46,9 +46,13 @@ class FileListCurrentPage extends React.Component {
             title={SettingsIcon}
             id="dropdownbutton_FileListCurrentPage"
           >
-            <MenuItem onClick={() => history.push('/File/upload')}>
+            <MenuItem onClick={() => history.push('/File/FS/upload')}>
               <Icon iconStyle="solid" icon="external-link-alt" />
-              {' Upload new'}
+              {' Upload File to FS'}
+            </MenuItem>
+            <MenuItem onClick={() => history.push('/File/S3/upload')}>
+              <Icon iconStyle="solid" icon="external-link-alt" />
+              {' Upload File to S3'}
             </MenuItem>
             <MenuItem divider />
             <MenuItem onClick={() => history.push('/File/draft')}>
