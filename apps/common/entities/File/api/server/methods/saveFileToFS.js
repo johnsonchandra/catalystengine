@@ -1,45 +1,50 @@
 /* eslint-disable no-param-reassign */
 
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 import { check, Match } from 'meteor/check';
 
 import fs from 'fs';
 import path from 'path';
 
-import parseHost from '../../../../../helpers/parseHost';
-import getTenant from '../../../../../helpers/getTenant';
+import getFileJSONdefs from '../../utils/getFileJSONdefs';
+
 import rateLimit from '../../../../../helpers/rateLimit';
+import authorizer from '../../../../../helpers/server/authorizer';
+
 import createFile from '../processors/createFile';
+import parseDotToUnderscore from '../../../../../helpers/parseDotToUnderscore';
 
 Meteor.methods({
-  // FIXME right now no user right check, only login user
   saveFileToFS: function saveFileToFS(blob, filenameInput, mimeType, size) {
     check(blob, Match.Any);
     check(filenameInput, String);
     check(mimeType, String);
     check(size, Number);
 
-    const user = Meteor.user();
-
-    const host = parseHost(this.connection.httpHeaders.host);
-    const tenant = getTenant(host);
-    const party = {
-      _id: user._id,
-      type: 'Member',
-      name: user.profile.fullname,
+    const options = {
+      context: {
+        headers: {
+          origin: this.connection.httpHeaders.host,
+        },
+        user: Meteor.user(),
+      },
     };
 
-    const now = new Date();
+    const { party, host, tenant } = authorizer(options, 'saveFileToFS', getFileJSONdefs);
 
-    const filename = `${now.getTime()}_${filenameInput
+    const name = `${filenameInput
       .replace(/ /g, '_')
       .replace(/ä/g, 'ae')
       .replace(/ö/g, 'oe')
       .replace(/ü/g, 'ue')
-      .replace(/ß/g, 'ss')
-      .replace(/[^a-z0-9_.]/g, '')}`;
+      .replace(/ß/g, 'ss')}`;
+    // .replace(/[^a-z0-9_.]/g, '')}`;
 
-    const basePath = Meteor.userId();
+    const filename = `${Random.id()}.${filenameInput.substring(
+      filenameInput.lastIndexOf('.') + 1,
+    )}`;
+    const basePath = `${parseDotToUnderscore(host)}/user/${Meteor.userId()}`;
     const filePath = path.normalize(path.join(`${process.env.FILES_PATH}/${basePath}`, filename));
     console.log(`[ saveFileToFS ] [ ${new Date()} ] filePath: ${filePath}`);
 
@@ -53,13 +58,14 @@ Meteor.methods({
             console.error(`************ Error: ${err}`);
             throw new Error(err.message);
           }
+
           const docFile = {
-            name: filename,
+            name,
             fsUrl: filePath,
             localUrl: `files/${basePath}/${filename}`,
             size,
             mimeType,
-            type: 'File',
+            type: mimeType.includes('image') ? 'Image.Detail' : 'File',
             status: 'Draft',
           };
           createFile(docFile, party, tenant);

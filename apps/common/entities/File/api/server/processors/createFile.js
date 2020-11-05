@@ -5,7 +5,6 @@ import entityInsert from '../../../../../helpers/server/entityInsert';
 const createFile = (args, party, tenant) => {
   const newDoc = {
     ...args,
-    type: 'File',
     status: 'Draft',
   };
 

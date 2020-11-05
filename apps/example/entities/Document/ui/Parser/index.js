@@ -25,7 +25,7 @@ const DocumentParser = (docs, settings) => {
     { from: 'status', to: 'status' },
     {
       from: (doc) => doc.updatedAt && iso(doc.updatedAt, settings.timezone, 'LLLL'),
-      to: 'Updated At',
+      to: 'updatedAt',
     },
     {
       from: (doc) => `/Document/${doc._id}${doc.status === 'Draft' ? '/edit' : ''}`,

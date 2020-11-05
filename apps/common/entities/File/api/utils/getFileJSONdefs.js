@@ -51,6 +51,9 @@ const getFileJSONdefs = (publishName, props) => {
     addFile: {
       auth: ['user', 'member', 'spv'],
     },
+    saveFileToFS: {
+      auth: ['user', 'member', 'spv'],
+    },
     updateFile: {
       auth: ['user', 'member', 'spv'],
     },
