@@ -166,7 +166,7 @@ const schema = {
 
       ## File
       addFile(_id: String!): File
-      updateFile(FileInput: FileInput): File
+      updateFile(inputFile: FileInput): File
       removeFile(_id: String!): File
       setFileStatusToActive(_id: String!, description: String): File
       setFileStatusToClosed(_id: String!, description: String): File

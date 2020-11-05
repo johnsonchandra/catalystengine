@@ -1,3 +1,5 @@
+import File from '../..';
+
 import checkOptionsArgsId from '../../../../../helpers/checkOptionsArgsId';
 import ownerQuery from '../../../../../helpers/ownerQuery';
 import authorizer from '../../../../../helpers/server/authorizer';

@@ -51,21 +51,16 @@ class FileEditPage extends React.Component {
               <Icon iconStyle="solid" icon="qrcode" />
               {' Show QR-Code'}
             </MenuItem>
-            {data.detailFile &&
-              data.detailFile.nr &&
-              data.detailFile.name &&
-              data.detailFile.amount &&
-              data.detailFile.trxDate &&
-              data.detailFile.status === 'Draft' && (
-                <React.Fragment>
-                  <MenuItem divider />
-                  <MenuItem header>STATUS</MenuItem>
-                  <MenuItem onClick={setStatusToActive}>
-                    <Icon iconStyle="solid" icon="external-link-alt" />
-                    {' Set to ACTIVE'}
-                  </MenuItem>
-                </React.Fragment>
-              )}
+            {data.detailFile && data.detailFile.name && data.detailFile.status === 'Draft' && (
+              <React.Fragment>
+                <MenuItem divider />
+                <MenuItem header>STATUS</MenuItem>
+                <MenuItem onClick={setStatusToActive}>
+                  <Icon iconStyle="solid" icon="external-link-alt" />
+                  {' Set to ACTIVE'}
+                </MenuItem>
+              </React.Fragment>
+            )}
           </DropdownButton>
           <hr />
           <FileDetail
@@ -83,6 +78,8 @@ class FileEditPage extends React.Component {
             match={match}
             settings={settings}
           />
+          <hr />
+          <p> di sini link ke file</p>
         </React.Fragment>
       </React.Fragment>
     );

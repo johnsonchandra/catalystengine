@@ -35,5 +35,6 @@ export default `
     size: Int
     mimeType: String
     type: String
+    description: String
   }
 `;

@@ -4,17 +4,12 @@ import { Button, Col, ControlLabel, FormGroup, Row } from 'react-bootstrap';
 
 import Validation from '../../../../ui/components/Validation';
 
-import { iso } from '../../../../helpers/dates';
-
 class FileEditor extends React.Component {
   handleSubmit = (form) => {
     const { doc, updateDoc } = this.props;
 
     const newDoc = {
-      nr: form.nr.value,
       name: form.name.value,
-      trxDate: form.trxDate.value,
-      amount: parseFloat(form.amount.value),
       description: form.description.value,
     };
 
@@ -51,39 +46,25 @@ class FileEditor extends React.Component {
   };
 
   render() {
-    const { doc, disabled, settings } = this.props;
+    const { doc, disabled } = this.props;
 
     return (
       <React.Fragment>
         <Validation
           rules={{
-            nr: {
-              required: true,
-            },
             name: {
               required: true,
             },
-            trxDate: {
+            type: {
               required: true,
-            },
-            amount: {
-              required: true,
-              number: true,
             },
           }}
           messages={{
-            nr: {
-              required: 'Harap mengisi Nomor File',
-            },
             name: {
-              required: 'Harap mengisi Nama File',
+              required: 'Please give File name',
             },
-            trxDate: {
-              required: 'Harap mengisi Tanggal File',
-            },
-            amount: {
-              required: 'Harap mengisi Jumlah',
-              number: 'Jumlah harus angka',
+            type: {
+              required: 'Please give File type',
             },
           }}
           submitHandler={(form) => this.handleSubmit(form)}
@@ -91,21 +72,6 @@ class FileEditor extends React.Component {
           <form ref={(form) => (this.form = form)} onSubmit={(event) => event.preventDefault()}>
             <Row>
               <Col xs={12} md={6}>
-                <Row>
-                  <Col xs={12}>
-                    <FormGroup>
-                      <ControlLabel>Nomor File</ControlLabel>
-                      <input
-                        type="text"
-                        name="nr"
-                        autoComplete="off"
-                        className="form-control"
-                        defaultValue={doc && doc.nr}
-                        disabled={disabled}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
                 <Row>
                   <Col xs={12}>
                     <FormGroup>
@@ -122,30 +88,27 @@ class FileEditor extends React.Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xs={6}>
+                  <Col xs={6} md={6}>
                     <FormGroup>
-                      <ControlLabel>Jumlah</ControlLabel>
+                      <ControlLabel>Type</ControlLabel>
                       <input
-                        type="number"
-                        name="amount"
+                        type="text"
+                        name="type"
                         className="form-control"
-                        defaultValue={doc && doc.amount}
+                        defaultValue={doc && doc.type}
                         disabled={disabled}
                       />
                     </FormGroup>
                   </Col>
-                  <Col xs={6}>
+                  <Col xs={6} md={6}>
                     <FormGroup>
-                      <ControlLabel>Tgl. Transaksi</ControlLabel>
+                      <ControlLabel>Tags</ControlLabel>
                       <input
-                        type="datetime-local"
-                        name="trxDate"
+                        type="text"
+                        name="tags"
+                        autoComplete="off"
                         className="form-control"
-                        defaultValue={
-                          doc &&
-                          doc.trxDate &&
-                          iso(doc.trxDate, settings.timezone, 'YYYY-MM-DD[T]HH:mm')
-                        }
+                        defaultValue={doc && doc.tags && doc.tags.join()}
                         disabled={disabled}
                       />
                     </FormGroup>
@@ -180,36 +143,76 @@ class FileEditor extends React.Component {
                 )}
                 <hr />
               </Col>
-              {doc.status !== 'Draft' && (
-                <Col xs={12} md={6}>
-                  <Row>
-                    <Col xs={6} md={6}>
-                      <FormGroup>
-                        <ControlLabel>Type</ControlLabel>
-                        <input
-                          type="text"
-                          name="type"
-                          className="form-control"
-                          defaultValue={doc && doc.type}
-                          disabled
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col xs={6} md={6}>
-                      <FormGroup>
-                        <ControlLabel>Status</ControlLabel>
-                        <input
-                          type="text"
-                          name="status"
-                          className="form-control"
-                          defaultValue={doc && doc.status}
-                          disabled
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                </Col>
-              )}
+              <Col xs={12} md={6}>
+                <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>fsUrl</ControlLabel>
+                      <input
+                        type="text"
+                        name="status"
+                        className="form-control"
+                        defaultValue={doc && doc.fsUrl}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>localUrl</ControlLabel>
+                      <input
+                        type="text"
+                        name="status"
+                        className="form-control"
+                        defaultValue={doc && doc.localUrl}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>cloudUrl</ControlLabel>
+                      <input
+                        type="text"
+                        name="status"
+                        className="form-control"
+                        defaultValue={doc && doc.cloudUrl}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>mimeType</ControlLabel>
+                      <input
+                        type="text"
+                        name="status"
+                        className="form-control"
+                        defaultValue={doc && doc.mimeType}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col xs={6} md={6}>
+                    <FormGroup>
+                      <ControlLabel>Status</ControlLabel>
+                      <input
+                        type="text"
+                        name="status"
+                        className="form-control"
+                        defaultValue={doc && doc.status}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+              </Col>
             </Row>
           </form>
         </Validation>
@@ -223,7 +226,6 @@ FileEditor.propTypes = {
   updateDoc: PropTypes.func.isRequired,
   removeDoc: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
-  settings: PropTypes.object.isRequired,
 };
 
 export default FileEditor;
