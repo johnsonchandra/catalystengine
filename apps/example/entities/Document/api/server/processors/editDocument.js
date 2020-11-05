@@ -5,7 +5,7 @@ import Document from '../../index';
 import cleanseDocDiff from '../../../../../../common/helpers/cleanseDocDiff';
 import entityUpdate from '../../../../../../common/helpers/server/entityUpdate';
 
-const editDocument = (args, party, tenant) => {
+const editDocument = (args, document, party, tenant) => {
   if (document.status === 'Processing')
     throw new Error('Document is in other process. Please wait and repeat');
 

@@ -1,3 +1,5 @@
+import Document from '../..';
+
 import checkOptionsArgsId from '../../../../../../common/helpers/checkOptionsArgsId';
 import ownerQuery from '../../../../../../common/helpers/ownerQuery';
 import authorizer from '../../../../../../common/helpers/server/authorizer';
@@ -23,7 +25,7 @@ const updateDocument = (options, resolve, reject) => {
     });
     if (!document) throw new Error(`[${publishName}] Document not found`);
 
-    resolve(editDocument(args, document, party));
+    resolve(editDocument(args, document, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }
