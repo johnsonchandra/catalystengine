@@ -46,8 +46,8 @@ class FileInput extends React.Component {
         this.setState({ progress: '' });
         Bert.alert(`Success uploading..`, 'success');
       }
-      const { history } = this.props;
-      history.push('/File/draft');
+      const { history, routeAfter } = this.props;
+      if (routeAfter) history.push(routeAfter);
     });
 
     computation = Tracker.autorun(() => {
@@ -83,12 +83,14 @@ class FileInput extends React.Component {
 FileInput.propTypes = {
   type: PropTypes.string,
   refs: PropTypes.arrayOf(PropTypes.object),
+  routeAfter: PropTypes.string,
   history: PropTypes.object.isRequired,
 };
 
 FileInput.defaultProps = {
   type: 'User',
   refs: undefined,
+  routeAfter: undefined,
 };
 
 export default FileInput;
