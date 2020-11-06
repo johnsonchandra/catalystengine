@@ -39,16 +39,17 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
       const { party, host, tenant } = authorizer(options, 'saveFileToS3', getFileJSONdefs);
       const mimeTypeRoot = file.type.substring(0, file.type.indexOf('/'));
       const upperFirstMetaContextType = _.upperFirst(metaContext.type);
+      const typeId = metaContext.typeId || party._id;
 
       const filename = `${Random.id()}.${file.name.substring(file.name.lastIndexOf('.') + 1)}`;
-      const cloudUrl = `${host}/${upperFirstMetaContextType}/${mimeTypeRoot}/${filename}`;
+      const cloudUrl = `${host}/${upperFirstMetaContextType}/${typeId}/${mimeTypeRoot}/${filename}`;
 
       const docFile = {
         name: parseFIleName(file.name),
         cloudUrl: `${Meteor.settings.public.cloudUrl}/${cloudUrl}`,
         size: file.size,
         mimeType: file.type,
-        typeId: metaContext.typeId || party._id,
+        typeId,
         type: `${upperFirstMetaContextType}.${_.upperFirst(mimeTypeRoot)}`,
         status: 'Active',
         refs: metaContext.refs
