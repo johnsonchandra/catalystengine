@@ -45,11 +45,27 @@ const getFileJSONdefs = (publishName, props) => {
         typeId: props && props._id,
         type: props && props.type,
       },
+      fields: {
+        owner: 0,
+        createdBy: 0,
+        createdAt: 0,
+        updatedBy: 0,
+        updatedAt: 0,
+        histories: 0,
+      },
     },
     listFileByRef: {
       query: {
         'refs._id': props && props._id,
         'refs.type': props && props.type,
+      },
+      fields: {
+        owner: 0,
+        createdBy: 0,
+        createdAt: 0,
+        updatedBy: 0,
+        updatedAt: 0,
+        histories: 0,
       },
     },
     addFile: {
