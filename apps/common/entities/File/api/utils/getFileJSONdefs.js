@@ -43,7 +43,7 @@ const getFileJSONdefs = (publishName, props) => {
     listFileByTypeId: {
       query: {
         typeId: props && props._id,
-        type: new RegExp(props && props.type, 'i'),
+        type: props && props.type,
       },
     },
     listFileByRef: {
