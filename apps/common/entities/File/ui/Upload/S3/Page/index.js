@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { Tracker } from 'meteor/tracker';
 import { Slingshot } from 'meteor/edgee:slingshot';
@@ -92,12 +91,7 @@ FileUploadS3Page.propTypes = {
 
 FileUploadS3Page.defaultProps = {
   type: 'User',
-  refs: [
-    {
-      _id: Meteor.userId(),
-      type: 'User',
-    },
-  ],
+  refs: undefined,
 };
 
 export default FileUploadS3Page;

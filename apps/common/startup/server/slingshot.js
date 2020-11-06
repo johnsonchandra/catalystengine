@@ -50,7 +50,9 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
         mimeType: file.type,
         type: `${upperFirstMetaContextType}.${_.upperFirst(mimeTypeRoot)}`,
         status: 'Active',
-        refs: metaContext.refs,
+        refs: metaContext.refs
+          ? metaContext.refs
+          : [{ _id: party._id, type: 'User', name: party.name }],
       };
 
       const fileCreated = createFile(docFile, party, tenant);
