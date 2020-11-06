@@ -4,6 +4,8 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { Slingshot } from 'meteor/edgee:slingshot';
 
+import _ from 'lodash';
+
 import authorizer from '../../helpers/server/authorizer';
 
 import getFileJSONdefs from '../../entities/File/api/utils/getFileJSONdefs';
@@ -35,16 +37,18 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
       };
 
       const { party, host, tenant } = authorizer(options, 'saveFileToS3', getFileJSONdefs);
+      const mimeTypeRoot = file.type.substring(0, file.type.index('/'));
+      const upperFirstMetaContextType = _.upperFirst(metaContext.type);
 
       const filename = `${Random.id()}.${file.name.substring(file.name.lastIndexOf('.') + 1)}`;
-      const cloudUrl = `${host}/user/${filename}`;
+      const cloudUrl = `${host}/${upperFirstMetaContextType}/${mimeTypeRoot}/${filename}`;
 
       const docFile = {
         name: parseFIleName(file.name),
         cloudUrl: `${Meteor.settings.public.cloudUrl}/${cloudUrl}`,
         size: file.size,
         mimeType: file.type,
-        type: file.type.includes('image') ? 'Image.Detail' : 'File',
+        type: `${upperFirstMetaContextType}.${_.upperFirst(mimeTypeRoot)}`,
         status: 'Active',
         refs: metaContext.refs,
       };

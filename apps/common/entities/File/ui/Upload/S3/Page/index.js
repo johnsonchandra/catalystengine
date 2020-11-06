@@ -23,11 +23,10 @@ class FileUploadS3Page extends React.Component {
   }
 
   preparingUpload = (file) => {
+    const { type, refs } = this.props;
     const metaContext = {
-      refs: {
-        _id: Meteor.userId(),
-        type: 'User',
-      },
+      type,
+      refs,
     };
 
     Bert.alert(`File is uploading..`, 'warning');
@@ -86,7 +85,19 @@ class FileUploadS3Page extends React.Component {
 }
 
 FileUploadS3Page.propTypes = {
+  type: PropTypes.string,
+  refs: PropTypes.arrayOf(PropTypes.object),
   history: PropTypes.object.isRequired,
+};
+
+FileUploadS3Page.defaultProps = {
+  type: 'User',
+  refs: [
+    {
+      _id: Meteor.userId(),
+      type: 'User',
+    },
+  ],
 };
 
 export default FileUploadS3Page;
