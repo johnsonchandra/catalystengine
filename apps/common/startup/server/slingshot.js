@@ -37,7 +37,7 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
       };
 
       const { party, host, tenant } = authorizer(options, 'saveFileToS3', getFileJSONdefs);
-      const mimeTypeRoot = file.type.substring(0, file.type.index('/'));
+      const mimeTypeRoot = file.type.substring(0, file.type.indexOf('/'));
       const upperFirstMetaContextType = _.upperFirst(metaContext.type);
 
       const filename = `${Random.id()}.${file.name.substring(file.name.lastIndexOf('.') + 1)}`;
