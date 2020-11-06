@@ -24,7 +24,7 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
   AWSSecretAccessKey: Meteor.settings.private.s3.secretKey,
   bucket: Meteor.settings.private.s3.bucket,
   acl: 'public-read',
-  region: Meteor.settings.private.s3.region,
+  region: Meteor.settings.private.s3.region || 'ap-southeast-1',
   authorize(file, metaContext) {
     try {
       const options = {
@@ -48,6 +48,7 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
         cloudUrl: `${Meteor.settings.public.cloudUrl}/${cloudUrl}`,
         size: file.size,
         mimeType: file.type,
+        typeId: metaContext.typeId || party._id,
         type: `${upperFirstMetaContextType}.${_.upperFirst(mimeTypeRoot)}`,
         status: 'Active',
         refs: metaContext.refs

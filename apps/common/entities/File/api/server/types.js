@@ -11,12 +11,14 @@ export default `
 
   type File {
     ${commonFields}
+    
     fsUrl: String
     localUrl: String
     cloudUrl: String
     size: Int
     mimeType: String
 
+    typeId: String
     type: String
     status: FileStatus
   }
@@ -34,6 +36,7 @@ export default `
     cloudUrl: String
     size: Int
     mimeType: String
+    typeId: String
     type: String
     description: String
   }

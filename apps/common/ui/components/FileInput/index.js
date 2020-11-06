@@ -24,9 +24,10 @@ class FileInput extends React.Component {
   }
 
   preparingUpload = (file) => {
-    const { type, refs } = this.props;
+    const { type, typeId, refs } = this.props;
     const metaContext = {
       type,
+      typeId,
       refs,
     };
 
@@ -82,6 +83,7 @@ class FileInput extends React.Component {
 
 FileInput.propTypes = {
   type: PropTypes.string,
+  typeId: PropTypes.string,
   refs: PropTypes.arrayOf(PropTypes.object),
   routeAfter: PropTypes.string,
   history: PropTypes.object.isRequired,
@@ -89,6 +91,7 @@ FileInput.propTypes = {
 
 FileInput.defaultProps = {
   type: 'User',
+  typeId: undefined,
   refs: undefined,
   routeAfter: undefined,
 };

@@ -2,10 +2,10 @@ const getFileJSONdefs = (publishName, props) => {
   const queryOr = (options) => [
     { _id: options && options.search },
     { name: options && options.search },
-    { nr: options && options.search },
     { 'refs._id': options && options.search },
     { 'refs.name': options && options.search },
     { type: options && options.search },
+    { typeId: options && options.search },
     { tags: options && options.search },
   ];
 
@@ -40,12 +40,16 @@ const getFileJSONdefs = (publishName, props) => {
       query: { status: 'Closed' },
       queryOr: queryOr(props),
     },
-    // FIXME no pub nor gql query, just preparing
+    listFileByTypeId: {
+      query: {
+        typeId: props && props._id,
+        type: new RegExp(props && props.type, 'i'),
+      },
+    },
     listFileByRef: {
       query: {
-        status: 'Active',
-        'refs._id': props && props.refs && props.refs._id,
-        'refs.type': props && props.refs && props.refs.type,
+        'refs._id': props && props._id,
+        'refs.type': props && props.type,
       },
     },
     addFile: {

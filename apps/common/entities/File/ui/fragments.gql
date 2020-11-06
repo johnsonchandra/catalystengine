@@ -4,6 +4,7 @@ fragment FileAttributes on File {
     cloudUrl
     size
     mimeType
+    typeId
 
     _id
     name

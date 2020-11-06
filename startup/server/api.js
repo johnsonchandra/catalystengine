@@ -115,6 +115,8 @@ const schema = {
       ## File
       detailFile(_id: String): File
       getFile(_id: String): File
+      listFileByRef(_id: String, type: String): [File]
+      listFileByTypeId(_id: String, type: String): [File]
 
       # end COMMON
 
