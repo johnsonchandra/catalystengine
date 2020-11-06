@@ -8,8 +8,6 @@ import autoBind from 'react-autobind';
 
 import _ from 'lodash';
 
-import Icon from '../Icon';
-
 import Styles from './styles';
 
 import roundPercentage from '../../../helpers/roundPercentage';
@@ -75,7 +73,6 @@ class FileInput extends React.Component {
 
     return (
       <Styles.FileInput className="FileInput">
-        <Icon iconStyle="solid" icon="search" />
         <input onChange={(event) => this.beginFileUpload(event)} type="file" />
         <p>{progress}</p>
       </Styles.FileInput>
