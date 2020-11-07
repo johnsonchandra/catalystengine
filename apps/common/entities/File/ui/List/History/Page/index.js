@@ -8,12 +8,11 @@ import SearchInput from '../../../../../../ui/components/SearchInput';
 import SettingsIcon from '../../../../../../ui/components/Icon/Settings';
 import Icon from '../../../../../../ui/components/Icon';
 import TableSimple from '../../../../../../ui/components/Table/Simple';
+import Styles from '../../../../../../ui/layout/CommonStyle';
 
 import parser from '../../../Parser';
 
 import FileListHistory from '..';
-
-import { StyledHeader } from './styles';
 
 class FileListHistoryPage extends React.Component {
   state = {
@@ -33,7 +32,7 @@ class FileListHistoryPage extends React.Component {
           </li>
           <Breadcrumb.Item active>History</Breadcrumb.Item>
         </Breadcrumb>
-        <StyledHeader className="page-header clearfix">
+        <Styles.Header className="page-header clearfix">
           <DropdownButton
             bsStyle="default"
             title={SettingsIcon}
@@ -64,7 +63,7 @@ class FileListHistoryPage extends React.Component {
               this.setState({ search: event.target.value, currentPage: 1 });
             }}
           />
-        </StyledHeader>
+        </Styles.Header>
 
         <FileListHistory
           parser={parser}

@@ -11,12 +11,11 @@ import SearchInput from '../../../../../../../ui/components/SearchInput';
 import SettingsIcon from '../../../../../../../ui/components/Icon/Settings';
 import Icon from '../../../../../../../ui/components/Icon';
 import TableSimple from '../../../../../../../ui/components/Table/Simple';
+import Styles from '../../../../../../../ui/layout/CommonStyle';
 
 import parser from '../../../../Parser';
 
 import OrgListHistoryAll from '..';
-
-import { StyledHeader } from './styles';
 
 import { addOrg } from '../../../../mutations.gql';
 
@@ -38,7 +37,7 @@ class OrgListHistoryAllPage extends React.Component {
           </li>
           <Breadcrumb.Item active>History</Breadcrumb.Item>
         </Breadcrumb>
-        <StyledHeader className="page-header clearfix">
+        <Styles.Header className="page-header clearfix">
           <DropdownButton
             bsStyle="default"
             title={SettingsIcon}
@@ -69,7 +68,7 @@ class OrgListHistoryAllPage extends React.Component {
               this.setState({ search: event.target.value, currentPage: 1 });
             }}
           />
-        </StyledHeader>
+        </Styles.Header>
 
         <OrgListHistoryAll
           parser={parser}

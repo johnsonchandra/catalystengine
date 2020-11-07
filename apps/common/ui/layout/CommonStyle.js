@@ -1,8 +1,6 @@
-/* eslint-disable import/prefer-default-export */
-
 import styled from 'styled-components';
 
-export const StyledHeader = styled.div`
+export const Header = styled.div`
   h4 span {
     display: inline-block;
     padding: 2px 6px;
@@ -19,3 +17,7 @@ export const StyledHeader = styled.div`
     width: 200px;
   }
 `;
+
+export default {
+  Header,
+};

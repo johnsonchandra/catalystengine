@@ -10,12 +10,11 @@ import SearchInput from '../../../../../../ui/components/SearchInput';
 import SettingsIcon from '../../../../../../ui/components/Icon/Settings';
 import Icon from '../../../../../../ui/components/Icon';
 import TableSimple from '../../../../../../ui/components/Table/Simple';
+import Styles from '../../../../../../ui/layout/CommonStyle';
 
 import parser from '../../../Parser';
 
 import FileListCurrent from '..';
-
-import { StyledHeader } from './styles';
 
 class FileListCurrentPage extends React.Component {
   constructor(props) {
@@ -40,7 +39,7 @@ class FileListCurrentPage extends React.Component {
           </li>
           <Breadcrumb.Item active>Current</Breadcrumb.Item>
         </Breadcrumb>
-        <StyledHeader className="page-header clearfix">
+        <Styles.Header className="page-header clearfix">
           <DropdownButton
             bsStyle="default"
             title={SettingsIcon}
@@ -71,7 +70,7 @@ class FileListCurrentPage extends React.Component {
               this.setState({ search: event.target.value, currentPage: 1 });
             }}
           />
-        </StyledHeader>
+        </Styles.Header>
 
         <FileListCurrent
           parser={parser}

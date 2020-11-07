@@ -11,12 +11,11 @@ import SearchInput from '../../../../../../../common/ui/components/SearchInput';
 import SettingsIcon from '../../../../../../../common/ui/components/Icon/Settings';
 import Icon from '../../../../../../../common/ui/components/Icon';
 import TableSimple from '../../../../../../../common/ui/components/Table/Simple';
+import Styles from '../../../../../../../common/ui/layout/CommonStyle';
 
 import parser from '../../../Parser';
 
 import DocumentListHistory from '..';
-
-import { StyledHeader } from './styles';
 
 import { addDocument } from '../../../mutations.gql';
 
@@ -38,7 +37,7 @@ class DocumentListHistoryPage extends React.Component {
           </li>
           <Breadcrumb.Item active>History</Breadcrumb.Item>
         </Breadcrumb>
-        <StyledHeader className="page-header clearfix">
+        <Styles.Header className="page-header clearfix">
           <DropdownButton
             bsStyle="default"
             title={SettingsIcon}
@@ -65,7 +64,7 @@ class DocumentListHistoryPage extends React.Component {
               this.setState({ search: event.target.value, currentPage: 1 });
             }}
           />
-        </StyledHeader>
+        </Styles.Header>
 
         <DocumentListHistory
           parser={parser}
