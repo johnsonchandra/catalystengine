@@ -20,13 +20,16 @@ const ListMasonry = (props) => {
   for (let i = 0; i < children.length; i += 1) {
     const columnListMasonry = i % columnsMax;
     columnWrapper[`column${columnListMasonry}`].push(
-      <div style={{ marginBottom: `${gap}px` }}>{children[i]}</div>,
+      <div key={i} style={{ marginBottom: `${gap}px` }}>
+        {children[i]}
+      </div>,
     );
   }
 
   for (let i = 0; i < columnsMax; i += 1) {
     result.push(
       <div
+        key={i}
         style={{
           marginLeft: `${i > 0 ? gap : 0}px`,
           flex: 1,
