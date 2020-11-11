@@ -10,8 +10,11 @@ import { Helmet } from 'react-helmet';
 import { ServerStyleSheet } from 'styled-components';
 import { Meteor } from 'meteor/meteor';
 
-import checkIfBlacklisted from '../../helpers/server/checkIfBlacklisted';
+// import checkIfBlacklisted from '../../helpers/server/checkIfBlacklisted';
+import checkURLforSSR from '../../helpers/server/checkURLforSSR';
 import parseHost from '../../helpers/parseHost';
+
+import Tenant from '../../entities/Tenant/api';
 
 import CommonApp from '../../ui/layout';
 import ExampleApp from '../../../example/ui/layout';
@@ -23,23 +26,27 @@ const Apps = {
 };
 
 onPageLoad(async (sink) => {
-  if (checkIfBlacklisted(sink.request.url.path)) {
+  if (!checkURLforSSR(sink.request.url.path)) {
     sink.appendToBody(`
       <script>
         window.noSSR = true;
       </script>
     `);
-
     return;
   }
 
   const host = parseHost(sink.request.headers.host);
   const App = Apps[host];
 
+  const tenant = Tenant.findOne({ host });
+
   const apolloClient = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({
       uri: Meteor.settings.public.graphQL.httpUri,
+      headers: {
+        origin: sink.request.headers.host,
+      },
     }),
     cache: new InMemoryCache(),
   });
@@ -48,7 +55,7 @@ onPageLoad(async (sink) => {
   const app = stylesheet.collectStyles(
     <ApolloProvider client={apolloClient}>
       <StaticRouter location={sink.request.url} context={{}}>
-        <App />
+        <App settings={tenant && tenant.settings} />
       </StaticRouter>
     </ApolloProvider>,
   );

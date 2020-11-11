@@ -7,7 +7,7 @@ const SEO = ({
   schema,
   title,
   description,
-  images,
+  image,
   url,
   contentType,
   published,
@@ -23,21 +23,21 @@ const SEO = ({
     <meta name="description" content={description} />
     <meta itemProp="name" content={title} />
     <meta itemProp="description" content={description} />
-    <meta itemProp="image" content={images && images.google} />
+    <meta itemProp="image" content={image} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@johnson_chandra" />
-    <meta name="twitter:title" content={`${title} | Catalyst Engine`} />
+    <meta name="twitter:site" content={`@${twitter || '@johnson_chandra'}`} />
+    <meta name="twitter:title" content={title || 'Catalyst Engine'} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:creator" content={`@${twitter}` || '@johnson_chandra'} />
-    <meta name="twitter:image:src" content={images && images.twitter} />
+    <meta name="twitter:creator" content={`@${twitter || '@johnson_chandra'}`} />
+    <meta name="twitter:image:src" content={image} />
 
-    <meta property="og:title" content={`${title} | Pup`} />
+    <meta property="og:title" content={title || 'Catalyst Engine'} />
     <meta property="og:type" content={contentType} />
     <meta property="og:url" content={url} />
-    <meta property="og:image" content={images && images.facebook} />
+    <meta property="og:image" content={image} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Catalyst Engine" />
+    <meta property="og:site_name" content={title || 'Catalyst Engine'} />
 
     {published && <meta name="article:published_time" content={published} />}
     {updated && <meta name="article:modified_time" content={updated} />}
@@ -53,7 +53,7 @@ SEO.defaultProps = {
   category: null,
   tags: [],
   twitter: null,
-  images: {},
+  image: '/mkcb_logo.png',
 };
 
 SEO.propTypes = {
@@ -67,7 +67,7 @@ SEO.propTypes = {
   category: PropTypes.string,
   tags: PropTypes.array,
   twitter: PropTypes.string,
-  images: PropTypes.object,
+  image: PropTypes.object,
 };
 
 export default SEO;
