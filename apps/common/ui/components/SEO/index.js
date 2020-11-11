@@ -1,14 +1,19 @@
+import { Meteor } from 'meteor/meteor';
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Helmet } from 'react-helmet';
+
+const seoURL = (path, host) => (host ? `${host}/${path}` : Meteor.absoluteUrl(path));
 
 const SEO = ({
   schema,
   title,
   description,
   image,
-  url,
+  path,
+  host,
   contentType,
   published,
   updated,
@@ -26,18 +31,18 @@ const SEO = ({
     <meta itemProp="image" content={image} />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content={`@${twitter || '@johnson_chandra'}`} />
-    <meta name="twitter:title" content={title || 'Catalyst Engine'} />
+    <meta name="twitter:site" content={twitter} />
+    <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:creator" content={`@${twitter || '@johnson_chandra'}`} />
+    <meta name="twitter:creator" content={twitter} />
     <meta name="twitter:image:src" content={image} />
 
-    <meta property="og:title" content={title || 'Catalyst Engine'} />
+    <meta property="og:title" content={title} />
     <meta property="og:type" content={contentType} />
-    <meta property="og:url" content={url} />
+    <meta property="og:url" content={seoURL(path, host)} />
     <meta property="og:image" content={image} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content={title || 'Catalyst Engine'} />
+    <meta property="og:site_name" content={title} />
 
     {published && <meta name="article:published_time" content={published} />}
     {updated && <meta name="article:modified_time" content={updated} />}
@@ -47,22 +52,28 @@ const SEO = ({
 );
 
 SEO.defaultProps = {
-  schema: null,
-  url: null,
+  host: null,
+  schema: 'Product',
+  title: 'Catalyst Engine',
+  twitter: 'johnson_chandra',
+  path: '/',
   updated: null,
+  published: null,
   category: null,
   tags: [],
-  twitter: null,
   image: '/mkcb_logo.png',
+  description: '',
+  contentType: 'website',
 };
 
 SEO.propTypes = {
   schema: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  url: PropTypes.string,
-  contentType: PropTypes.string.isRequired,
-  published: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  description: PropTypes.string,
+  path: PropTypes.string,
+  host: PropTypes.string,
+  contentType: PropTypes.string,
+  published: PropTypes.string,
   updated: PropTypes.string,
   category: PropTypes.string,
   tags: PropTypes.array,
