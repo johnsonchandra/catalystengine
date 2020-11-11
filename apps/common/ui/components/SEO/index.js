@@ -78,7 +78,7 @@ SEO.propTypes = {
   category: PropTypes.string,
   tags: PropTypes.array,
   twitter: PropTypes.string,
-  image: PropTypes.object,
+  image: PropTypes.string,
 };
 
 export default SEO;
