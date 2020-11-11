@@ -26,6 +26,27 @@ const Apps = {
 };
 
 onPageLoad(async (sink) => {
+  const host = parseHost(sink.request.headers.host);
+
+  const tenant = Tenant.findOne({ host });
+  if (!tenant) throw new Error('Tenant not found in sink');
+
+  // FIXME make softcode based on tenant
+  sink.appendToHead(`<title>${tenant.settings.fullname}</title>`);
+  sink.appendToHead(`<meta name="description" content="${tenant.settings.description}">`);
+  sink.appendToHead(
+    `<meta name="viewport" content="initial-scale=1, minimal-ui, maximum-scale=5, minimum-scale=1"/>`,
+  );
+  sink.appendToHead(`<meta name="theme-color" content="#4285F4"/>`);
+  sink.appendToHead(
+    `<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">`,
+  );
+  sink.appendToHead(`<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  `);
+  sink.appendToHead(`<link rel="shortcut icon" href="/mkcb.ico">`);
+  sink.appendToHead(`<link rel="apple-touch-icon" sizes="120x120" href="/mkcb_logo.png">`);
+  // sink.appendToHead(`<link rel="manifest" href="/manifest.json">`);
+
   if (!checkURLforSSR(sink.request.url.path)) {
     sink.appendToBody(`
       <script>
@@ -35,10 +56,7 @@ onPageLoad(async (sink) => {
     return;
   }
 
-  const host = parseHost(sink.request.headers.host);
   const App = Apps[host];
-
-  const tenant = Tenant.findOne({ host });
 
   const apolloClient = new ApolloClient({
     ssrMode: true,
