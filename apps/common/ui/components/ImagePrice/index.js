@@ -9,7 +9,7 @@ const ImagePrice = (props) => {
   return (
     <Link key={doc._id} to={doc.linkUrl}>
       <div className="hover-style">
-        <img src={doc.logoUrl || Meteor.settings.public.default.logoUrl} alt={doc.name} />
+        <img src={doc.logoUrl || Meteor.settings.public.default.imgUrl} alt={doc.name} />
         <div className="shop-title">
           <span>{doc.name}</span>
           <br />
