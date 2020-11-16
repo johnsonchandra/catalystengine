@@ -21,7 +21,8 @@
       "accessKey": "",
       "secretKey": "",
       "bucket": "",
-      "region": ""
+      "region": "",
+      "folder": "development"
     }
   }
 }

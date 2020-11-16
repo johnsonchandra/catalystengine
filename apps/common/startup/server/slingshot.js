@@ -42,7 +42,9 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
       const typeId = metaContext.typeId || party._id;
 
       const filename = `${Random.id()}.${file.name.substring(file.name.lastIndexOf('.') + 1)}`;
-      const cloudUrl = `${host}/${upperFirstMetaContextType}/${typeId}/${mimeTypeRoot}/${filename}`;
+      const cloudUrl = `${
+        Meteor.settings.private.s3.folder === 'host' ? host : Meteor.settings.private.s3.folder
+      }/${upperFirstMetaContextType}/${typeId}/${mimeTypeRoot}/${filename}`;
 
       const docFile = {
         name: parseFIleName(file.name),
