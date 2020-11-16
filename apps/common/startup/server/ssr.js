@@ -46,7 +46,6 @@ onPageLoad(async (sink) => {
     `<link rel="apple-touch-icon" sizes="120x120" href="${tenant.settings.logo ||
       '/mkcb_logo.png'}/">`,
   );
-  sink.appendToHead(`<link rel="apple-touch-icon" sizes="120x120" href="/mkcb_logo.png">`);
   // sink.appendToHead(`<link rel="manifest" href="/manifest.json">`);
 
   if (!checkURLforSSR(sink.request.url.path)) {
