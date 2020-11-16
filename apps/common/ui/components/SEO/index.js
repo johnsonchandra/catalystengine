@@ -55,7 +55,7 @@ SEO.defaultProps = {
   host: null,
   schema: 'Product',
   title: 'Catalyst Engine',
-  twitter: 'johnson_chandra',
+  twitter: '@johnson_chandra',
   path: '/',
   updated: null,
   published: null,
