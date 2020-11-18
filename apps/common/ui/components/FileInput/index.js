@@ -46,9 +46,13 @@ class FileInput extends React.Component {
       } else {
         this.setState({ progress: '' });
         Bert.alert(`Success uploading..`, 'success');
+
+        const { history, routeAfter } = this.props;
+
+        history.push(
+          routeAfter || `/File/${response.substring(response.lastIndexOf('/') + 1)}/edit`,
+        );
       }
-      const { history, routeAfter } = this.props;
-      history.push(routeAfter || `/File/${response}/edit`);
     });
 
     computation = Tracker.autorun(() => {
