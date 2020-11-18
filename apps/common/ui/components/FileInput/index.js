@@ -37,7 +37,7 @@ class FileInput extends React.Component {
     const uploader = new Slingshot.Upload('saveFileToS3', metaContext);
     if (uploader.validate(file)) Bert.alert(`Error uploading..`, 'error');
 
-    uploader.send(file, (error) => {
+    uploader.send(file, (error, response) => {
       computation.stop();
 
       if (error) {
@@ -48,7 +48,7 @@ class FileInput extends React.Component {
         Bert.alert(`Success uploading..`, 'success');
       }
       const { history, routeAfter } = this.props;
-      if (routeAfter) history.push(routeAfter);
+      history.push(routeAfter || `/File/${response}/edit`);
     });
 
     computation = Tracker.autorun(() => {

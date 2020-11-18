@@ -75,6 +75,6 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
   },
 
   key(file, metaContext) {
-    return metaContext.cloudUrl;
+    return metaContext._id;
   },
 });
