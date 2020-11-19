@@ -22,6 +22,7 @@ class UserSignup extends React.Component {
     const { history, sendVerificationEmail } = this.props;
 
     const splitfullname = form.fullname.value.split(' ');
+    const mobilePhone = form.phone.value.trim();
 
     Accounts.createUser(
       {
@@ -30,7 +31,7 @@ class UserSignup extends React.Component {
         profile: {
           fullname: form.fullname.value,
           shortname: splitfullname[0].trim(),
-          phone: form.phone.value,
+          phone: mobilePhone.substr(0, 1) === '0' ? `+62${mobilePhone.substring(1)}` : mobilePhone,
         },
         host: parseHost(window.location.hostname),
       },
@@ -63,6 +64,7 @@ class UserSignup extends React.Component {
                 },
                 phone: {
                   required: true,
+                  mobilephoneID: true,
                 },
                 password: {
                   required: true,
@@ -75,6 +77,7 @@ class UserSignup extends React.Component {
                 },
                 phone: {
                   required: "What's your phone number?",
+                  mobilephoneID: 'Please input valid Indonesian mobile phone number',
                 },
                 emailAddress: {
                   required: 'Need an email address here.',

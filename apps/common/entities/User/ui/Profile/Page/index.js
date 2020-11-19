@@ -169,6 +169,10 @@ class UserProfilePage extends React.Component {
                     shortname: {
                       required: true,
                     },
+                    phone: {
+                      required: true,
+                      mobilephoneID: true,
+                    },
                     emailAddress: {
                       required: true,
                       email: true,
@@ -192,6 +196,10 @@ class UserProfilePage extends React.Component {
                     },
                     shortname: {
                       required: "What's your nick name?",
+                    },
+                    phone: {
+                      required: "What's your phone number?",
+                      mobilephoneID: 'Please input valid Indonesian mobile phone number',
                     },
                     emailAddress: {
                       required: 'Need an email address here.',
