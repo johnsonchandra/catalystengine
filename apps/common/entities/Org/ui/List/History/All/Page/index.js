@@ -74,7 +74,7 @@ class OrgListHistoryAllPage extends React.Component {
           parser={parser}
           component={TableSimple}
           settings={settings}
-          search={search}
+          search={(search && search.length) >= (settings.minCharSearch || 3)}
           currentPage={currentPage}
           perPage={perPage}
           onChangePage={(currentPageNow) => this.setState({ currentPage: currentPageNow })}
