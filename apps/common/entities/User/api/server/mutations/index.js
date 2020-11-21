@@ -55,26 +55,24 @@ export default {
       },
       html(user, url) {
         const urlHost = parseHost(url);
-        const hostNow = user.lastLogins[0].host || urlHost;
-        const urlWithoutHash = url.replace(urlHost, hostNow).replace('#/', '');
+        const urlWithoutHash = url.replace(urlHost, host).replace('#/', '');
         return handlebarsEmailToHtml(getPrivateFile('email-templates/verify-email.html'), {
           title: "Let's Verify Your Email",
           subtitle: `Verify your email to start using ${tenant.name}`,
           logoUrl: tenant.logoUrl,
-          productName: hostNow,
+          productName: host,
           fullname: user.profile.fullname,
           verifyUrl: urlWithoutHash,
         });
       },
       text(user, url) {
         const urlHost = parseHost(url);
-        const hostNow = user.lastLogins[0].host || urlHost;
-        const urlWithoutHash = url.replace(urlHost, hostNow).replace('#/', '');
+        const urlWithoutHash = url.replace(urlHost, host).replace('#/', '');
 
         if (Meteor.isDevelopment) console.info(`[ Common ] Verify Email Link: ${urlWithoutHash}`);
 
         return handlebarsEmailToText(getPrivateFile('email-templates/verify-email.txt'), {
-          productName: hostNow,
+          productName: host,
           fullname: user.profile.fullname,
           verifyUrl: urlWithoutHash,
         });
@@ -103,29 +101,27 @@ export default {
       },
       html(user, url) {
         const urlHost = parseHost(url);
-        const hostNow = user.lastLogins[0].host || urlHost;
-        const urlWithoutHash = url.replace(urlHost, hostNow).replace('#/', '');
+        const urlWithoutHash = url.replace(urlHost, host).replace('#/', '');
 
         return handlebarsEmailToHtml(getPrivateFile('email-templates/reset-password.html'), {
           title: "Let's Reset Your Password",
           subtitle: 'A password reset was requested for this email address.',
           logoUrl: tenant.logoUrl,
           fullname: user.profile.fullname,
-          productName: hostNow,
+          productName: host,
           emailAddress: user.emails[0].address,
           resetUrl: urlWithoutHash,
         });
       },
       text(user, url) {
         const urlHost = parseHost(url);
-        const hostNow = user.lastLogins[0].host || urlHost;
         const urlWithoutHash = url.replace(urlHost, host).replace('#/', '');
 
         if (Meteor.isDevelopment) console.info(`Reset Password Link: ${urlWithoutHash}`); // eslint-disable-line
 
         return handlebarsEmailToText(getPrivateFile('email-templates/reset-password.txt'), {
           fullname: user.profile.fullname,
-          productName: hostNow,
+          productName: host,
           emailAddress: user.emails[0].address,
           resetUrl: urlWithoutHash,
         });
