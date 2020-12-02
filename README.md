@@ -5,3 +5,5 @@ It should be used as boilerplate, not as finished application.
 
 Features are:
 #### Multi Tenancy
+#### Multi Application
+
