@@ -2,8 +2,8 @@ import commonFields from '../../../common_fields';
 
 export default `
   enum NotificationType {
-    Manual
-    Cron
+    Info
+    Error
   }
   enum NotificationStatus {
     Draft
@@ -15,9 +15,8 @@ export default `
   
   type Notification {
     ${commonFields}
-    nr: String
-    trxDate: String
-    amount: Float
+    from: Party
+    to: Party
     type: NotificationType
     status: NotificationStatus
   }
@@ -25,10 +24,9 @@ export default `
   input NotificationInput {
     _id: String!
     
-    nr: String
     name: String
-    trxDate: String
-    amount: Float
+    from: Party
+    to: Party
     
     description: String
   }

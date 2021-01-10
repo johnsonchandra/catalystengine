@@ -4,23 +4,16 @@ import { iso } from '../../../../helpers/dates';
 const NotificationParser = (docs, settings) => {
   return parseDocs(docs, [
     { from: '_id', to: '_id' },
-    { from: 'nr', to: 'nr' },
     { from: 'name', to: 'name' },
     {
-      from: (doc) =>
-        doc.amount &&
-        doc.amount.toLocaleString('id', {
-          style: 'currency',
-          currency: doc.currency || settings.currency || 'IDR',
-          maximumFractionDigits: settings.maximumFractionDigits,
-          minimumFractionDigits: settings.minimumFractionDigits,
-        }),
-      to: 'Amount',
+      from: (doc) => doc.from && doc.from.name,
+      to: 'from',
     },
     {
-      from: (doc) => doc.trxDate && iso(doc.trxDate, settings.timezone, 'LLLL'),
-      to: 'trxDate',
+      from: (doc) => doc.to && doc.to.name,
+      to: 'to',
     },
+    { from: 'description', to: 'description' },
     { from: 'type', to: 'type' },
     { from: 'status', to: 'status' },
     {

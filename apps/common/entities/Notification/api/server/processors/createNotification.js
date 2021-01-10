@@ -7,8 +7,7 @@ const createNotification = (args, party, tenant) => {
 
   const newDoc = {
     ...args,
-    trxDate: now,
-    type: 'Manual',
+    type: 'Info',
     status: 'Draft',
   };
 

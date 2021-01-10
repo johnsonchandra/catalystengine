@@ -23,12 +23,16 @@ Meteor.methods({
         status: 'Active',
         ...ownerQuery(tenant.owner),
       },
-      { sort: { nr: 1 } },
+      { sort: { updatedAt: 1 } },
     ).fetch();
 
     const options = parseDocs(notifications || [], [
       { from: '_id', to: 'value' },
-      { from: (doc) => `${doc.nr}/${doc.type} - ${doc.name}`, to: 'label' },
+      {
+        from: (doc) =>
+          `${doc.name} - from: ${doc.from && doc.from.name}, to: ${doc.to && doc.to.name}`,
+        to: 'label',
+      },
     ]);
 
     return options.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()));

@@ -2,7 +2,8 @@ const getNotificationJSONdefs = (publishName, props) => {
   const queryOr = (options) => [
     { _id: options && options.search },
     { name: options && options.search },
-    { nr: options && options.search },
+    { 'from.name': options && options.search },
+    { 'to.name': options && options.search },
   ];
 
   const defs = {

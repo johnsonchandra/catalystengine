@@ -1,7 +1,15 @@
 fragment NotificationAttributes on Notification {
-    nr
-    trxDate
-    amount
+    from {
+        _id
+        name
+        type
+    }
+
+    to {
+        _id
+        name
+        type
+    }
 
     _id
     name
