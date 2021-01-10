@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import { Button, Col, ControlLabel, FormGroup, Row } from 'react-bootstrap';
 
 import Validation from '../../../../ui/components/Validation';
+import TableSimple from '../../../../ui/components/Table/Simple';
 
 // FIXME from and to not yet selectable
+// FIXME linkUrls not yet editable
+
 class NotificationEditor extends React.Component {
   handleSubmit = (form) => {
     const { doc, updateDoc } = this.props;
@@ -176,6 +179,7 @@ class NotificationEditor extends React.Component {
             </Row>
           </form>
         </Validation>
+        <TableSimple caption="Links" docs={doc.linkUrls} />
       </React.Fragment>
     );
   }

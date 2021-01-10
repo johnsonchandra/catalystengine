@@ -13,10 +13,18 @@ export default `
     Closed
   }
   
+  type NotificationLinkUrl {
+    _id: String
+    name: String
+    type: String
+    linkUrl: String
+  }
+  
   type Notification {
     ${commonFields}
     from: Party
     to: Party
+    linkUrls: [NotificationLinkUrl]
     type: NotificationType
     status: NotificationStatus
   }
