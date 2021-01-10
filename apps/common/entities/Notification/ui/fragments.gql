@@ -11,6 +11,13 @@ fragment NotificationAttributes on Notification {
         type
     }
 
+    linkUrls {
+        _id
+        name
+        type
+        linkUrl
+    }
+
     _id
     name
     type

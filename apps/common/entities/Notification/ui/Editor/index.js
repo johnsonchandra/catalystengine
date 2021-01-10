@@ -147,21 +147,21 @@ class NotificationEditor extends React.Component {
                     </FormGroup>
                   </Col>
                 </Row>
+                <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>Description</ControlLabel>
+                      <textarea
+                        rows={3}
+                        name="description"
+                        className="form-control"
+                        defaultValue={doc && doc.description}
+                        disabled={disabled}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
               </Col>
-              <Row>
-                <Col xs={12}>
-                  <FormGroup>
-                    <ControlLabel>Description</ControlLabel>
-                    <textarea
-                      rows={3}
-                      name="description"
-                      className="form-control"
-                      defaultValue={doc && doc.description}
-                      disabled={disabled}
-                    />
-                  </FormGroup>
-                </Col>
-              </Row>
 
               {!disabled ? (
                 <Button type="submit" bsStyle="success">
