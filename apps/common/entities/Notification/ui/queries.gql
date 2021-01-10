@@ -1,0 +1,7 @@
+#import "./fragments.gql"
+
+query detailNotification($_id: String) {
+  detailNotification(_id: $_id) {
+    ...NotificationAttributes
+  }
+}
