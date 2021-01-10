@@ -43,6 +43,13 @@ import '../../apps/common/entities/File/api/server/publications';
 import FileTypes from '../../apps/common/entities/File/api/server/types';
 import FileQueries from '../../apps/common/entities/File/api/server/queries';
 import FileMutations from '../../apps/common/entities/File/api/server/mutations';
+
+import '../../apps/common/entities/Notification/api/server';
+import '../../apps/common/entities/Notification/api/server/methods';
+import '../../apps/common/entities/Notification/api/server/publications';
+import NotificationTypes from '../../apps/common/entities/Notification/api/server/types';
+import NotificationQueries from '../../apps/common/entities/Notification/api/server/queries';
+import NotificationMutations from '../../apps/common/entities/Notification/api/server/mutations';
 // end COMMON
 
 // start EXAMPLE
@@ -81,6 +88,7 @@ const schema = {
     ${CounterTypes}
     ${FileTypes}
     ${OrgTypes}
+    ${NotificationTypes}
     # end COMMON
 
     # start EXAMPLE
@@ -117,6 +125,10 @@ const schema = {
       getFile(_id: String): File
       listFileByRef(_id: String, type: String): [File]
       listFileByTypeId(_id: String, type: String): [File]
+
+      ## Notification
+      detailNotification(_id: String): Notification
+      getNotification(_id: String): Notification
 
       # end COMMON
 
@@ -173,6 +185,13 @@ const schema = {
       setFileStatusToActive(_id: String!, description: String): File
       setFileStatusToClosed(_id: String!, description: String): File
 
+      ## Notification
+      addNotification(_id: String!): Notification
+      updateNotification(inputNotification: NotificationInput): Notification
+      removeNotification(_id: String!): Notification
+      setNotificationStatusToActive(_id: String!, description: String): Notification
+      setNotificationStatusToClosed(_id: String!, description: String): Notification
+
       # end COMMON
 
       # start EXAMPLE
@@ -193,8 +212,9 @@ const schema = {
       ...UserSettingQueries,
       ...TenantQueries,
       ...CounterQueries,
-      ...FileQueries,
       ...OrgQueries,
+      ...FileQueries,
+      ...NotificationQueries,
       // end COMMON
 
       // start EXAMPLE
@@ -209,6 +229,7 @@ const schema = {
       ...CounterMutations,
       ...OrgMutations,
       ...FileMutations,
+      ...NotificationMutations,
       // end COMMON
 
       // start EXAMPLE
