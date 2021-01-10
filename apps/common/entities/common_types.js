@@ -35,6 +35,18 @@ export default `
     description: String
   }
   
+  input PartyInput {
+    _id: String!
+    
+    type: PartyType
+    name: String
+    shortname: String
+    logoUrl: String
+    latitude: Float
+    longitude: Float
+    description: String
+  }
+  
   type History{
     party: Party
     timestamp: String

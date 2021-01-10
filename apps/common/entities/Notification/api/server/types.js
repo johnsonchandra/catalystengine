@@ -33,8 +33,8 @@ export default `
     _id: String!
     
     name: String
-    from: Party
-    to: Party
+    from: PartyInput
+    to: PartyInput
     
     description: String
   }
