@@ -14,7 +14,7 @@ import Document from '../../../api';
 
 import getDocumentJSONdefs from '../../../api/utils/getDocumentJSONdefs';
 
-class DocumentDraftList extends React.Component {
+class DocumentListDraft extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -57,7 +57,7 @@ class DocumentDraftList extends React.Component {
   }
 }
 
-DocumentDraftList.defaultProps = {
+DocumentListDraft.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -65,7 +65,7 @@ DocumentDraftList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-DocumentDraftList.propTypes = {
+DocumentListDraft.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -111,4 +111,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(DocumentDraftList);
+})(DocumentListDraft);

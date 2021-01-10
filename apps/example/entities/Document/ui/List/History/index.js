@@ -13,7 +13,7 @@ import Document from '../../../api';
 
 import getDocumentJSONdefs from '../../../api/utils/getDocumentJSONdefs';
 
-class DocumentHistoryList extends React.Component {
+class DocumentListHistory extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -56,7 +56,7 @@ class DocumentHistoryList extends React.Component {
   }
 }
 
-DocumentHistoryList.defaultProps = {
+DocumentListHistory.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -64,7 +64,7 @@ DocumentHistoryList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-DocumentHistoryList.propTypes = {
+DocumentListHistory.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -110,4 +110,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(DocumentHistoryList);
+})(DocumentListHistory);
