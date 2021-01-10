@@ -22,6 +22,8 @@ export default `
     Member
     Webhook
     Cron
+    System
+    Dummy
   }
 
   type Party {
