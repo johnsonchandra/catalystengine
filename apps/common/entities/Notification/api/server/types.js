@@ -22,6 +22,9 @@ export default `
   
   type Notification {
     ${commonFields}
+    
+    host: String
+    
     from: Party
     to: Party
     linkUrls: [NotificationLinkUrl]
@@ -33,6 +36,8 @@ export default `
     _id: String!
     
     name: String
+    host: String
+    
     from: PartyInput
     to: PartyInput
     

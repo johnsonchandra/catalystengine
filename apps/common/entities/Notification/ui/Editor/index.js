@@ -89,6 +89,21 @@ class NotificationEditor extends React.Component {
                   </Col>
                 </Row>
                 <Row>
+                  <Col xs={12}>
+                    <FormGroup>
+                      <ControlLabel>Host</ControlLabel>
+                      <input
+                        type="text"
+                        name="host"
+                        autoComplete="off"
+                        className="form-control"
+                        defaultValue={doc && doc.host}
+                        disabled
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row>
                   <Col xs={6}>
                     <FormGroup>
                       <ControlLabel>From</ControlLabel>

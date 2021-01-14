@@ -1,4 +1,6 @@
 fragment NotificationAttributes on Notification {
+    host
+
     from {
         _id
         name
