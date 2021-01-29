@@ -77,7 +77,7 @@ import CounterHistoryListPage from '../../entities/Counter/ui/List/History/Page'
 import CounterDetailPage from '../../entities/Counter/ui/Detail/Page';
 import CounterEditPage from '../../entities/Counter/ui/Edit/Page';
 
-import ListProcessingPage from './Entity/List/Processing/Page';
+import EntityListProcessingPage from './Entity/List/Processing/Page';
 
 // File pages
 import FileDraftListPage from '../../entities/File/ui/List/Draft/Page';
@@ -134,7 +134,7 @@ class CommonApp extends React.Component {
                 exact
                 allowedRoles={['admin']}
                 path="/Processing"
-                component={ListProcessingPage}
+                component={EntityListProcessingPage}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}
