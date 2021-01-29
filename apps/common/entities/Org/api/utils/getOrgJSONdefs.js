@@ -9,6 +9,7 @@ const getOrgJSONdefs = (publishName, props) => {
 
   const defs = {
     listOrgDraftAll: {
+      // no auth here, special case for super admin
       query: { status: { $in: ['Draft', 'Queue'] } },
       queryOr: queryOr(props),
     },
@@ -30,12 +31,13 @@ const getOrgJSONdefs = (publishName, props) => {
       queryOr: queryOr(props),
     },
     listOrgCurrentAll: {
-      query: { status: { $in: ['Processing', 'Active'] } },
+      // no auth here, special case for super admin
+      query: { status: 'Active' },
       queryOr: queryOr(props),
     },
     listOrgCurrentHost: {
       auth: ['admin'],
-      query: { status: { $in: ['Processing', 'Active'] } },
+      query: { status: 'Active' },
       fields: {
         nr: 1,
         name: 1,
@@ -51,12 +53,13 @@ const getOrgJSONdefs = (publishName, props) => {
       queryOr: queryOr(props),
     },
     listOrgCurrentFeatureAll: {
-      query: { featureNr: { $gt: 0 }, status: { $in: ['Processing', 'Active'] } },
+      // no auth here, special case for super admin
+      query: { featureNr: { $gt: 0 }, status: 'Active' },
       queryOr: queryOr(props),
     },
     listOrgCurrentFeatureHost: {
       auth: ['admin'],
-      query: { featureNr: { $gt: 0 }, status: { $in: ['Processing', 'Active'] } },
+      query: { featureNr: { $gt: 0 }, status: 'Active' },
       fields: {
         nr: 1,
         name: 1,
@@ -72,12 +75,35 @@ const getOrgJSONdefs = (publishName, props) => {
       queryOr: queryOr(props),
     },
     listOrgHistoryAll: {
+      // no auth here, special case for super admin
       query: { status: 'Closed' },
+      queryOr: queryOr(props),
+    },
+    listOrgProcessingAll: {
+      // no auth here, special case for super admin
+      query: { status: 'Processing' },
       queryOr: queryOr(props),
     },
     listOrgHistoryHost: {
       auth: ['admin'],
       query: { status: 'Closed' },
+      fields: {
+        nr: 1,
+        name: 1,
+        shortname: 1,
+        phone: 1,
+        featureNr: 1,
+        sequenceNr: 1,
+        type: 1,
+        status: 1,
+        description: 1,
+        updatedAt: 1,
+      },
+      queryOr: queryOr(props),
+    },
+    listOrgProcessingHost: {
+      auth: ['admin'],
+      query: { status: 'Processing' },
       fields: {
         nr: 1,
         name: 1,

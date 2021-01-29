@@ -13,12 +13,17 @@ const getTenantJSONdefs = (publishName, props) => {
     },
     listTenantCurrent: {
       auth: ['member', 'spv'],
-      query: { status: { $in: ['Processing', 'Active'] } },
+      query: { status: 'Active' },
       queryOr: queryOr(props),
     },
     listTenantHistory: {
       auth: ['spv'],
       query: { status: 'Closed' },
+      queryOr: queryOr(props),
+    },
+    listTenantProcessing: {
+      auth: ['spv'],
+      query: { status: 'Processing' },
       queryOr: queryOr(props),
     },
     detailTenant: {

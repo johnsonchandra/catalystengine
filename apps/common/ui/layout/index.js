@@ -77,6 +77,8 @@ import CounterHistoryListPage from '../../entities/Counter/ui/List/History/Page'
 import CounterDetailPage from '../../entities/Counter/ui/Detail/Page';
 import CounterEditPage from '../../entities/Counter/ui/Edit/Page';
 
+import ListProcessingPage from './List/Processing/Page';
+
 // File pages
 import FileDraftListPage from '../../entities/File/ui/List/Draft/Page';
 import FileCurrentListPage from '../../entities/File/ui/List/Current/Page';
@@ -127,6 +129,16 @@ class CommonApp extends React.Component {
           <Grid>
             <Switch>
               <Route exact name="index" path="/" component={Home} />
+
+              <Authorized
+                exact
+                allowedRoles={['admin']}
+                path="/Processing"
+                component={ListProcessingPage}
+                setAfterLoginPath={setAfterLoginPath}
+                {...props}
+                {...state}
+              />
 
               {/* Counter route */}
               <Authorized

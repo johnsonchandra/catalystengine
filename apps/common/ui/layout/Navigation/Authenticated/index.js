@@ -85,6 +85,11 @@ const CommonNavigationAuthenticated = ({ userId, name, roles, history }) => (
               UserSetting
             </NavItem>
           </LinkContainer>
+          <LinkContainer exact to="/Processing">
+            <NavItem eventKey="Processing" href="/Processing">
+              Processing
+            </NavItem>
+          </LinkContainer>
         </NavDropdown>
       )}
 

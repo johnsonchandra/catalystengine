@@ -14,7 +14,7 @@ import Counter from '../../../api';
 
 import getCounterJSONdefs from '../../../api/utils/getCounterJSONdefs';
 
-class CounterDraftList extends React.Component {
+class CounterListDraft extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -57,7 +57,7 @@ class CounterDraftList extends React.Component {
   }
 }
 
-CounterDraftList.defaultProps = {
+CounterListDraft.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -65,7 +65,7 @@ CounterDraftList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-CounterDraftList.propTypes = {
+CounterListDraft.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -111,4 +111,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(CounterDraftList);
+})(CounterListDraft);

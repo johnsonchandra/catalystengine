@@ -60,9 +60,9 @@ import CounterDetailPage from '../../../common/entities/Counter/ui/Detail/Page';
 import CounterEditPage from '../../../common/entities/Counter/ui/Edit/Page';
 
 // Document pages
-import DocumentDraftListPage from '../../entities/Document/ui/List/Draft/Page';
-import DocumentCurrentListPage from '../../entities/Document/ui/List/Current/Page';
-import DocumentHistoryListPage from '../../entities/Document/ui/List/History/Page';
+import DocumentListDraftPage from '../../entities/Document/ui/List/Draft/Page';
+import DocumentListCurrentPage from '../../entities/Document/ui/List/Current/Page';
+import DocumentListHistoryPage from '../../entities/Document/ui/List/History/Page';
 import DocumentDetailPage from '../../entities/Document/ui/Detail/Page';
 import DocumentEditPage from '../../entities/Document/ui/Edit/Page';
 
@@ -163,7 +163,7 @@ class ExampleApp extends React.Component {
                 exact
                 allowedRoles={['member', 'spv', 'admin']}
                 path="/Document"
-                component={DocumentDraftListPage}
+                component={DocumentListDraftPage}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}
@@ -172,7 +172,7 @@ class ExampleApp extends React.Component {
                 exact
                 allowedRoles={['member', 'spv', 'admin']}
                 path="/Document/draft"
-                component={DocumentDraftListPage}
+                component={DocumentListDraftPage}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}
@@ -181,7 +181,7 @@ class ExampleApp extends React.Component {
                 exact
                 allowedRoles={['member', 'spv', 'admin']}
                 path="/Document/current"
-                component={DocumentCurrentListPage}
+                component={DocumentListCurrentPage}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}
@@ -190,7 +190,7 @@ class ExampleApp extends React.Component {
                 exact
                 allowedRoles={['spv', 'admin']}
                 path="/Document/history"
-                component={DocumentHistoryListPage}
+                component={DocumentListHistoryPage}
                 setAfterLoginPath={setAfterLoginPath}
                 {...props}
                 {...state}

@@ -13,7 +13,7 @@ import File from '../../../api';
 
 import getFileJSONdefs from '../../../api/utils/getFileJSONdefs';
 
-class FileHistoryList extends React.Component {
+class FileListHistory extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -56,7 +56,7 @@ class FileHistoryList extends React.Component {
   }
 }
 
-FileHistoryList.defaultProps = {
+FileListHistory.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -64,7 +64,7 @@ FileHistoryList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-FileHistoryList.propTypes = {
+FileListHistory.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -85,7 +85,7 @@ export default withTrackerSsr((props) => {
       perPage: props.perPage,
       currentPage: props.currentPage,
       sort: {
-        nr: 1,
+        updatedAt: -1,
       },
     };
 
@@ -110,4 +110,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(FileHistoryList);
+})(FileListHistory);

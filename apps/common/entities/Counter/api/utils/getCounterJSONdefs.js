@@ -8,7 +8,7 @@ const getCounterJSONdefs = (publishName, props) => {
 
   const defs = {
     detailCounter: {
-      auth: ['user', 'member'],
+      auth: ['member', 'spv'],
       query: { _id: props && props._id },
     },
     getCounter: {
@@ -23,31 +23,36 @@ const getCounterJSONdefs = (publishName, props) => {
       },
     },
     listCounterDraft: {
-      auth: ['user', 'member', 'spv'],
+      auth: ['member', 'spv'],
       query: { status: { $in: ['Draft', 'Queue'] } },
       queryOr: queryOr(props),
     },
     listCounterCurrent: {
-      auth: ['user', 'member', 'spv'],
-      query: { status: { $in: ['Processing', 'Active'] } },
+      auth: ['member', 'spv'],
+      query: { status: 'Active' },
       queryOr: queryOr(props),
     },
     listCounterHistory: {
-      auth: ['member', 'spv'],
+      auth: ['spv'],
       query: { status: 'Closed' },
       queryOr: queryOr(props),
     },
+    listCounterProcessing: {
+      auth: ['spv'],
+      query: { status: 'Processing' },
+      queryOr: queryOr(props),
+    },
     addCounter: {
-      auth: ['user', 'member'],
+      auth: ['member'],
     },
     updateCounter: {
-      auth: ['user', 'member'],
+      auth: ['member'],
     },
     removeCounter: {
       auth: ['spv'],
     },
     setCounterStatusToActive: {
-      auth: ['member', 'spv'],
+      auth: ['spv'],
     },
     setCounterStatusToClosed: {
       auth: ['spv'],

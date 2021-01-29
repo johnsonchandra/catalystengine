@@ -13,7 +13,7 @@ import Counter from '../../../api';
 
 import getCounterJSONdefs from '../../../api/utils/getCounterJSONdefs';
 
-class CounterHistoryList extends React.Component {
+class CounterListHistory extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -56,7 +56,7 @@ class CounterHistoryList extends React.Component {
   }
 }
 
-CounterHistoryList.defaultProps = {
+CounterListHistory.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -64,7 +64,7 @@ CounterHistoryList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-CounterHistoryList.propTypes = {
+CounterListHistory.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -85,7 +85,7 @@ export default withTrackerSsr((props) => {
       perPage: props.perPage,
       currentPage: props.currentPage,
       sort: {
-        nr: 1,
+        updatedAt: -1,
       },
     };
 
@@ -110,4 +110,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(CounterHistoryList);
+})(CounterListHistory);

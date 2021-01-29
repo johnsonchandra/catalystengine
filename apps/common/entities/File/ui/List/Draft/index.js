@@ -14,7 +14,7 @@ import File from '../../../api';
 
 import getFileJSONdefs from '../../../api/utils/getFileJSONdefs';
 
-class FileDraftList extends React.Component {
+class FileListDraft extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -57,7 +57,7 @@ class FileDraftList extends React.Component {
   }
 }
 
-FileDraftList.defaultProps = {
+FileListDraft.defaultProps = {
   loading: true,
   docs: [],
   total: 0,
@@ -65,7 +65,7 @@ FileDraftList.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-FileDraftList.propTypes = {
+FileListDraft.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   total: PropTypes.number,
@@ -111,4 +111,4 @@ export default withTrackerSsr((props) => {
     };
   }
   return params;
-})(FileDraftList);
+})(FileListDraft);

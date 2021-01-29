@@ -9,6 +9,7 @@ const getUserJSONdefs = (publishName, props) => {
 
   const defs = {
     listUserCurrentAll: {
+      // no auth here, special case for super admin
       query: { _id: { $ne: props && props._id } },
       fields: { profile: 1, emails: 1, status: 1, hosts: 1 },
       queryOr: queryOr(props),
@@ -20,6 +21,7 @@ const getUserJSONdefs = (publishName, props) => {
       queryOr: queryOr(props),
     },
     listUserOnlineAll: {
+      // no auth here, special case for super admin
       query: { _id: { $ne: props && props._id }, 'status.online': true },
       fields: { profile: 1, emails: 1, status: 1, hosts: 1 },
       queryOr: queryOr(props),

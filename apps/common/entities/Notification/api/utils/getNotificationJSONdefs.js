@@ -23,25 +23,30 @@ const getNotificationJSONdefs = (publishName, props) => {
       },
     },
     listNotificationDraft: {
-      auth: ['user', 'member', 'spv'],
-      query: { status: { $in: ['Draft', 'Queue', 'Processing'] } },
+      auth: ['member', 'spv'],
+      query: { status: { $in: ['Draft', 'Queue'] } },
       queryOr: queryOr(props),
     },
     listNotificationCurrent: {
-      auth: ['user', 'member', 'spv'],
-      query: { status: { $in: ['Active'] } },
+      auth: ['member', 'spv'],
+      query: { status: 'Active' },
       queryOr: queryOr(props),
     },
     listNotificationHistory: {
-      auth: ['member', 'spv'],
-      query: { status: { $in: ['Closed', 'Void', 'Refund'] } },
+      auth: ['spv'],
+      query: { status: 'Closed' },
+      queryOr: queryOr(props),
+    },
+    listNotificationProcessing: {
+      auth: ['spv'],
+      query: { status: 'Processing' },
       queryOr: queryOr(props),
     },
     addNotification: {
-      auth: ['user', 'member', 'spv'],
+      auth: ['member', 'spv'],
     },
     updateNotification: {
-      auth: ['user', 'member', 'spv'],
+      auth: ['member', 'spv'],
     },
     removeNotification: {
       auth: ['spv'],
@@ -50,7 +55,7 @@ const getNotificationJSONdefs = (publishName, props) => {
       auth: ['member', 'spv'],
     },
     setNotificationStatusToClosed: {
-      auth: ['spv'],
+      auth: ['member', 'spv'],
     },
   };
   if (defs[publishName]) return defs[publishName];
