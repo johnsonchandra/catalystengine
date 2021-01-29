@@ -4,7 +4,7 @@ import 'moment-timezone';
 // monthDayYear 'MMMM Do, YYYY'
 // monthDayYearAtTime 'MMMM Do, YYYY [at] hh:mm a'
 
-const parseTimestamp = (timestamp) => {
+export const parseTimestamp = (timestamp) => {
   const timestampInt = parseInt(timestamp, 10);
   return isNaN(timestampInt) ? timestamp : timestampInt;
 };
@@ -46,9 +46,20 @@ export const iso = (timestamp, timezone, format) => {
   return 'Never';
 };
 
-export const processIntYYYYMMDDtoDate = (angka) => {
-  const stringAngka = angka.toString();
-  return new Date(
-    `${stringAngka.substring(6)}/${stringAngka.substring(4, 6)}/${stringAngka.substring(0, 4)}`,
-  );
+export const parseYYYYMMDDtoDate = (yyyymmdd) => {
+  const tgl = isNaN(yyyymmdd) ? yyyymmdd : yyyymmdd.toString();
+  return new Date(`${tgl.substring(0, 4)}-${tgl.substring(4, 6)}-${tgl.substring(6)}`);
+};
+
+export const countDiffDay = (startDate, endDate, timezone, addDays) => {
+  // if startDate or endDate is undefined, it will be now, behaviour of moment
+  const fromDate = moment(parseTimestamp(startDate)).tz(timezone);
+  const thruDate = moment(parseTimestamp(endDate)).tz(timezone);
+
+  // enforce time to zero because if less than 24 hours diff, it will diff as 0 day
+  const fromDateMoment = moment([fromDate.year(), fromDate.month(), fromDate.date()]);
+  const thruDateMoment = moment([thruDate.year(), thruDate.month(), thruDate.date()]);
+
+  const diffDay = thruDateMoment.diff(fromDateMoment, 'days');
+  return diffDay + (addDays || 0);
 };
