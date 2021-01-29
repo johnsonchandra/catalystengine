@@ -1,7 +1,7 @@
-import parseDocs from '../../../../../helpers/parseDocs';
-import { iso, timeago } from '../../../../../helpers/dates';
+import parseDocs from '../../../../helpers/parseDocs';
+import { iso, timeago } from '../../../../helpers/dates';
 
-const ProcessingParser = (docs, settings) => {
+const EntityParser = (docs, settings) => {
   return parseDocs(docs, [
     { from: '_id', to: '_id' },
     { from: 'nr', to: 'nr' },
@@ -24,4 +24,4 @@ const ProcessingParser = (docs, settings) => {
   ]);
 };
 
-export default ProcessingParser;
+export default EntityParser;

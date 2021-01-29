@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import { Breadcrumb } from 'react-bootstrap';
 
-import SearchInput from '../../../../components/SearchInput';
-import TableSimple from '../../../../components/Table/Simple';
-import Styles from '../../../CommonStyle';
+import SearchInput from '../../../../../components/SearchInput';
+import TableSimple from '../../../../../components/Table/Simple';
+import Styles from '../../../../CommonStyle';
 
-import parser from '../Parser';
+import parser from '../../../Parser';
 
-import ListProcessing from '..';
+import EntityListProcessing from '../index';
 
-class ListProcessingPage extends React.Component {
+class EntityListProcessingPage extends React.Component {
   state = {
     currentPage: 1,
   };
@@ -37,7 +37,7 @@ class ListProcessingPage extends React.Component {
           />
         </Styles.Header>
 
-        <ListProcessing
+        <EntityListProcessing
           parser={parser}
           component={TableSimple}
           settings={settings}
@@ -51,8 +51,8 @@ class ListProcessingPage extends React.Component {
   }
 }
 
-ListProcessingPage.propTypes = {
+EntityListProcessingPage.propTypes = {
   settings: PropTypes.object.isRequired,
 };
 
-export default ListProcessingPage;
+export default EntityListProcessingPage;

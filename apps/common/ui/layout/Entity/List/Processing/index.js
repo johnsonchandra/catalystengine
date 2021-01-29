@@ -1,19 +1,20 @@
 import { Meteor } from 'meteor/meteor';
-import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import React from 'react';
 import PropTypes from 'prop-types';
 import autoBind from 'react-autobind';
 
-import Loading from '../../../components/Loading';
-import Pagination from '../../../components/Pagination';
-import withTrackerSsr from '../../../../helpers/withTrackerSsr';
+import Loading from '../../../../components/Loading';
+import Pagination from '../../../../components/Pagination';
 
-import Counter from '../../../../entities/Counter/api';
-import File from '../../../../entities/File/api';
-import Notification from '../../../../entities/Notification/api';
+import withTrackerSsr from '../../../../../helpers/withTrackerSsr';
+import paramsProcessing from '../../../../../helpers/paramsProcessing';
 
-class ListProcessing extends React.Component {
+import Counter from '../../../../../entities/Counter/api';
+import File from '../../../../../entities/File/api';
+import Notification from '../../../../../entities/Notification/api';
+
+class EntityListProcessing extends React.Component {
   constructor(props) {
     super(props);
     autoBind(this);
@@ -64,7 +65,7 @@ class ListProcessing extends React.Component {
   }
 }
 
-ListProcessing.defaultProps = {
+EntityListProcessing.defaultProps = {
   loading: true,
   docs: [],
   totals: [],
@@ -73,7 +74,7 @@ ListProcessing.defaultProps = {
   currentPage: 1,
   onChangePage: () => {},
 };
-ListProcessing.propTypes = {
+EntityListProcessing.propTypes = {
   loading: PropTypes.bool,
   docs: PropTypes.arrayOf(PropTypes.object),
   totals: PropTypes.arrayOf(PropTypes.object),
@@ -104,50 +105,11 @@ export default withTrackerSsr((props) => {
       { name: 'File', Entity: File },
       { name: 'Notification', Entity: Notification },
     ];
-    const subscriptions = Entities.map((entity) =>
-      Meteor.subscribe(`list${entity.name}Processing`, options),
-    );
-
-    let loading = true;
-    subscriptions.forEach((subscription, index) => {
-      loading = index === 0 ? !subscription.ready() : loading || !subscription.ready();
-    });
-
-    let docs = [];
-    Entities.forEach((entity) => {
-      const entityDocs = entity.Entity.find(
-        { status: 'Processing' },
-        {
-          sort: options.sort,
-        },
-      )
-        .fetch()
-        .map((entityDoc) => {
-          return {
-            entityName: entity.name,
-            ...entityDoc,
-          };
-        });
-      docs = docs.concat(entityDocs);
-    });
-
-    let total = 0;
-    const totals = Entities.map((entity) => {
-      const entityTotal = Counts.get(`list${entity.name}ProcessingCount`);
-      total += entityTotal;
-      return {
-        entityName: entity.name,
-        total: entityTotal,
-      };
-    });
 
     params = {
       ...params,
-      loading,
-      docs,
-      totals,
-      total,
+      ...paramsProcessing(Entities, options),
     };
   }
   return params;
-})(ListProcessing);
+})(EntityListProcessing);
