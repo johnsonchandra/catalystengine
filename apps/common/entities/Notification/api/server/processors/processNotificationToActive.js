@@ -18,7 +18,7 @@ const processNotificationToActive = (notification, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Notification to Processing',
+    'Processing processNotificationToActive',
     party,
     timestamp,
   );

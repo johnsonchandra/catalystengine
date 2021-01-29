@@ -12,7 +12,7 @@ const processTenantToActive = (tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Tenant to Processing',
+    'Processing processTenantToActive',
     party,
     timestamp,
   );

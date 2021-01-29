@@ -12,7 +12,7 @@ const processTenantToClosed = (tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Tenant to Processing',
+    'Processing processTenantToClosed',
     party,
     timestamp,
   );

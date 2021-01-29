@@ -19,7 +19,7 @@ const processNotificationToClosed = (notification, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Notification to Processing',
+    'Processing processNotificationToClosed',
     party,
     timestamp,
   );

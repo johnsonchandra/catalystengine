@@ -18,7 +18,7 @@ const processDocumentToActive = (document, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Document to Processing',
+    'Processing processDocumentToActive',
     party,
     timestamp,
   );

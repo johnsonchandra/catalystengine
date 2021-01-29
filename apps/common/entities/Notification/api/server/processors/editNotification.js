@@ -12,10 +12,28 @@ const editNotification = (args, notification, party) => {
   if (!(notification.status === 'Draft' || notification.status === 'Queue'))
     throw new Error(`Notification status: ${notification.status} cannot be edited anymore`);
 
+  // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
+  entityUpdate(
+    Notification,
+    { _id: notification._id },
+    {
+      status: 'Processing',
+    },
+    'Processing editNotification',
+    party,
+  );
+
   const newDoc = cleanseDocDiff(args, notification);
   newDoc.description = newDoc.description ? sanitizeHtml(newDoc.description) : newDoc.description;
+  newDoc.status = notification.status;
 
-  entityUpdate(Notification, { _id: notification._id }, newDoc, 'Updating Notification', party);
+  entityUpdate(
+    Notification,
+    { _id: notification._id },
+    newDoc,
+    `Notification updated, status back to ${notification.status}`,
+    party,
+  );
   return Notification.findOne(args._id);
 };
 

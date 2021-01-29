@@ -18,7 +18,7 @@ const processOrgToClosed = (org, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Org to Processing',
+    'Processing processOrgToClosed',
     party,
   );
 

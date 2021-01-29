@@ -12,6 +12,17 @@ const editDocument = (args, document, party, tenant) => {
   if (!(document.status === 'Draft' || document.status === 'Queue'))
     throw new Error(`Document status: ${document.status} cannot be edited anymore`);
 
+  // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
+  entityUpdate(
+    Document,
+    { _id: document._id },
+    {
+      status: 'Processing',
+    },
+    'Processing editDocument',
+    party,
+  );
+
   const { maximumFractionDigits } = tenant.settings;
 
   // eslint-disable-next-line no-param-reassign
@@ -22,8 +33,15 @@ const editDocument = (args, document, party, tenant) => {
 
   const newDoc = cleanseDocDiff(args, document);
   newDoc.description = newDoc.description ? sanitizeHtml(newDoc.description) : newDoc.description;
+  newDoc.status = document.status;
 
-  entityUpdate(Document, { _id: document._id }, newDoc, 'Updating Document', party);
+  entityUpdate(
+    Document,
+    { _id: document._id },
+    newDoc,
+    `Document updated, status back to ${document.status}`,
+    party,
+  );
   return Document.findOne(args._id);
 };
 

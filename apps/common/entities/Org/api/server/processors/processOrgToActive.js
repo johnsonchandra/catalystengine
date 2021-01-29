@@ -20,7 +20,7 @@ const processOrgToActive = (org, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Org to Processing',
+    'Processing processOrgToActive',
     party,
   );
 

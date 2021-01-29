@@ -19,7 +19,7 @@ const processCounterToClosed = (counter, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Counter to Processing',
+    'Processing processCounterToClosed',
     party,
     timestamp,
   );

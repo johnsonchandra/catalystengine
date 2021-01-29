@@ -13,8 +13,20 @@ const editOrg = (args, org, party, host) => {
   if (!(org.status === 'Draft' || org.status === 'Queue'))
     throw new Error(`Org status: ${org.status} cannot be edited anymore`);
 
+  // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet
+  entityUpdate(
+    Org,
+    { _id: org._id },
+    {
+      status: 'Processing',
+    },
+    'Processing editOrg',
+    party,
+  );
+
   const newDoc = cleanseDocDiff(args, org);
   newDoc.description = newDoc.description ? sanitizeHtml(newDoc.description) : newDoc.description;
+  newDoc.status = org.status;
 
   const hostDotToUnderscore = parseDotToUnderscore(host);
 
@@ -26,7 +38,7 @@ const editOrg = (args, org, party, host) => {
     };
   }
 
-  entityUpdate(Org, { _id: org._id }, newDoc, 'Updating Org', party);
+  entityUpdate(Org, { _id: org._id }, newDoc, `Org updated, status back to ${org.status}`, party);
   return Org.findOne(args._id);
 };
 

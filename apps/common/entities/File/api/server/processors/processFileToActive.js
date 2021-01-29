@@ -18,7 +18,7 @@ const processFileToActive = (file, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set File to Processing',
+    'Processing processFileToActive',
     party,
     timestamp,
   );

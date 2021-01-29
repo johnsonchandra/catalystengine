@@ -19,7 +19,7 @@ const processDocumentToClosed = (document, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set Document to Processing',
+    'Processing processDocumentToClosed',
     party,
     timestamp,
   );

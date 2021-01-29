@@ -18,7 +18,7 @@ const processFileToClosed = (file, tenant, party) => {
     {
       status: 'Processing',
     },
-    'Set File to Processing',
+    'Processing processFiletoClosed',
     party,
     timestamp,
   );
