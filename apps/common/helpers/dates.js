@@ -46,6 +46,16 @@ export const iso = (timestamp, timezone, format) => {
   return 'Never';
 };
 
+export const parseDateToYYYYMMDD = (timestamp, timezone) => {
+  if (timestamp)
+    return timezone
+      ? moment(timestamp)
+          .tz(timezone)
+          .format('YYYYMMDD')
+      : moment(timestamp).format('YYYYMMDD');
+  return '';
+};
+
 export const parseYYYYMMDDtoDate = (yyyymmdd) => {
   const tgl = isNaN(yyyymmdd) ? yyyymmdd : yyyymmdd.toString();
   return new Date(`${tgl.substring(0, 4)}-${tgl.substring(4, 6)}-${tgl.substring(6)}`);
