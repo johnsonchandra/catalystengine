@@ -30,7 +30,6 @@ ddp-rate-limiter@1.0.9
 dynamic-import@0.6.0
 server-render@0.3.1
 meteorhacks:picker
-swydo:graphql
 browser-policy@1.1.0
 http@1.4.2
 reywood:publish-composite
@@ -42,3 +41,4 @@ mixmax:smart-disconnect
 mdg:meteor-apm-agent
 littledata:synced-cron
 edgee:slingshot
+swydo:graphql
