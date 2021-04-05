@@ -25,7 +25,7 @@ const setCounterStatusToActive = (options, resolve, reject) => {
     });
     if (!counter) throw new Error(`[${publishName}] Counter not found`);
 
-    resolve(processCounterToActive(counter, tenant, party));
+    resolve(processCounterToActive(counter, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

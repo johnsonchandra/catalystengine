@@ -18,7 +18,7 @@ const setOrgStatusToActive = (options, resolve, reject) => {
     });
     if (!org) throw new Error(`[${publishName}] Org not found`);
 
-    resolve(processOrgToActive(org, tenant, party));
+    resolve(processOrgToActive(org, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

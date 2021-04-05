@@ -25,7 +25,7 @@ const setCounterStatusToClosed = (options, resolve, reject) => {
     });
     if (!counter) throw new Error(`[${publishName}] Counter not found`);
 
-    resolve(processCounterToClosed(counter, tenant, party));
+    resolve(processCounterToClosed(counter, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

@@ -2,7 +2,7 @@ import Document from '../../index';
 
 import entityUpdate from '../../../../../../common/helpers/server/entityUpdate';
 
-const processDocumentToActive = (document, tenant, party) => {
+const processDocumentToActive = (document, party) => {
   if (document.status === 'Processing')
     throw new Error('Document is in other process. Please wait and repeat');
 

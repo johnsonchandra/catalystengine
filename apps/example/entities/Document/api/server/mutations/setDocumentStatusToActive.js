@@ -25,7 +25,7 @@ const setDocumentStatusToActive = (options, resolve, reject) => {
     });
     if (!document) throw new Error(`[${publishName}] Document not found`);
 
-    resolve(processDocumentToActive(document, tenant, party));
+    resolve(processDocumentToActive(document, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

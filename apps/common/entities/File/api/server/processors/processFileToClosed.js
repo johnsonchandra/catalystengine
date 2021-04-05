@@ -2,7 +2,7 @@ import File from '../../index';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
-const processFileToClosed = (file, tenant, party) => {
+const processFileToClosed = (file, party) => {
   if (file.status === 'Processing')
     throw new Error('File is in other process. Please wait and repeat');
 

@@ -1,6 +1,6 @@
 import UserLog from '../../entities/UserLog/api';
 
-const entityUpdate = (Entity, condition, doc, description, party, now, options, push) => {
+const entityUpdateWithoutHistories = (Entity, condition, doc, description, party, now, options) => {
   const timestamp = now || new Date();
 
   UserLog.insert({
@@ -9,7 +9,7 @@ const entityUpdate = (Entity, condition, doc, description, party, now, options, 
     doc: JSON.stringify(doc),
     description,
     timestamp,
-    type: 'entityUpdate',
+    type: 'entityUpdateWithoutHistories',
   });
 
   return Entity.update(
@@ -20,18 +20,9 @@ const entityUpdate = (Entity, condition, doc, description, party, now, options, 
         updatedBy: party.name,
         updatedAt: timestamp,
       },
-      $push: {
-        histories: {
-          party,
-          timestamp,
-          doc: JSON.stringify(doc),
-          description,
-        },
-        ...push,
-      },
     },
     options,
   );
 };
 
-export default entityUpdate;
+export default entityUpdateWithoutHistories;

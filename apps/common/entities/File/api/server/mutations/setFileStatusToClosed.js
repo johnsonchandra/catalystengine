@@ -20,7 +20,7 @@ const setFileStatusToClosed = (options, resolve, reject) => {
     });
     if (!file) throw new Error(`[${publishName}] File not found`);
 
-    resolve(processFileToClosed(file, tenant, party));
+    resolve(processFileToClosed(file, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

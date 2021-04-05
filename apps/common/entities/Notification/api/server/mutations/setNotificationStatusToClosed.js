@@ -25,7 +25,7 @@ const setNotificationStatusToClosed = (options, resolve, reject) => {
     });
     if (!notification) throw new Error(`[${publishName}] Notification not found`);
 
-    resolve(processNotificationToClosed(notification, tenant, party));
+    resolve(processNotificationToClosed(notification, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

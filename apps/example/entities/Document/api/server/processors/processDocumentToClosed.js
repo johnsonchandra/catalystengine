@@ -2,7 +2,8 @@ import Document from '../../index';
 
 import entityUpdate from '../../../../../../common/helpers/server/entityUpdate';
 
-const processDocumentToClosed = (document, tenant, party) => {
+// FIXME rubah tenant, party to party, tenant di catalyst
+const processDocumentToClosed = (document, party) => {
   if (document.status === 'Processing')
     throw new Error('Document is in other process. Please wait and repeat');
 

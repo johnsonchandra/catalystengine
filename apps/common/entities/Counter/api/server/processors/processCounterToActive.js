@@ -2,7 +2,7 @@ import Counter from '../../index';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
-const processCounterToActive = (counter, tenant, party) => {
+const processCounterToActive = (counter, party) => {
   if (counter.status === 'Processing')
     throw new Error('Counter is in other process. Please wait and repeat');
 

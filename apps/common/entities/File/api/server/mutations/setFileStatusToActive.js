@@ -20,7 +20,7 @@ const setFileStatusToActive = (options, resolve, reject) => {
     });
     if (!file) throw new Error(`[${publishName}] File not found`);
 
-    resolve(processFileToActive(file, tenant, party));
+    resolve(processFileToActive(file, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

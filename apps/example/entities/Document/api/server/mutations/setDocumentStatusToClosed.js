@@ -25,7 +25,7 @@ const setDocumentStatusToClosed = (options, resolve, reject) => {
     });
     if (!document) throw new Error(`[${publishName}] Document not found`);
 
-    resolve(processDocumentToClosed(document, tenant, party));
+    resolve(processDocumentToClosed(document, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

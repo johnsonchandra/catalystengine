@@ -27,6 +27,7 @@ Slingshot.createDirective('saveFileToS3', Slingshot.S3Storage, {
   region: Meteor.settings.private.s3.region || 'ap-southeast-1',
   authorize(file, metaContext) {
     try {
+      // FIXME not yet tested, please comply with existing env in S3
       const options = {
         context: {
           headers: {

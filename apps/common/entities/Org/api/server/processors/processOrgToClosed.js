@@ -4,7 +4,7 @@ import Org from '../..';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
-const processOrgToClosed = (org, tenant, party) => {
+const processOrgToClosed = (org, party) => {
   if (org.status === 'Processing')
     throw new Error('Org is in other process. Please wait and repeat');
 

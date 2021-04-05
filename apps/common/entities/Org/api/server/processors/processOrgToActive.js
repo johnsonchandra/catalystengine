@@ -5,7 +5,7 @@ import Org from '../../index';
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 import parseDotToUnderscore from '../../../../../helpers/parseDotToUnderscore';
 
-const processOrgToActive = (org, tenant, party) => {
+const processOrgToActive = (org, party, tenant) => {
   // now do last check
   if (org.status === 'Processing')
     throw new Error('Trx is in other process. Please wait and repeat');

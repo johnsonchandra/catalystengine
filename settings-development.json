@@ -14,6 +14,7 @@
     "cloudUrl": ""
   },
   "private": {
+    "CRON_ID": "vGxErho6sBZYQSwha",
     "MAIL_URL": "",
     "supportEmail": "Johnson Chandra <johnson.chandra@gmail.com>",
     "rolesGlobal": ["user", "member", "spv", "admin"],

@@ -25,7 +25,7 @@ const setNotificationStatusToActive = (options, resolve, reject) => {
     });
     if (!notification) throw new Error(`[${publishName}] Notification not found`);
 
-    resolve(processNotificationToActive(notification, tenant, party));
+    resolve(processNotificationToActive(notification, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }

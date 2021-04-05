@@ -2,7 +2,7 @@ import Notification from '../../index';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
-const processNotificationToClosed = (notification, tenant, party) => {
+const processNotificationToClosed = (notification, party) => {
   if (notification.status === 'Processing')
     throw new Error('Notification is in other process. Please wait and repeat');
 

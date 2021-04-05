@@ -18,7 +18,7 @@ const setOrgStatusToClosed = (options, resolve, reject) => {
     });
     if (!org) throw new Error(`[${publishName}] Org not found`);
 
-    resolve(processOrgToClosed(org, tenant, party));
+    resolve(processOrgToClosed(org, party, tenant));
   } catch (exception) {
     reject(`[${publishName}] ${exception.message}`);
   }
