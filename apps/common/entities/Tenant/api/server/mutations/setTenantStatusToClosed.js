@@ -19,7 +19,7 @@ const action = (args, party) => {
   if (tenant.status === 'Processing')
     throw new Error(`[${publishName}] Tenant is in other process. Please wait and repeat`);
 
-  return processTenantToClosed(tenant, party);
+  return processTenantToClosed(party, tenant);
 };
 
 const setTenantStatusToClosed = (options, resolve, reject) => {

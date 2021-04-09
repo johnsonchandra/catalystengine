@@ -76,7 +76,7 @@ class FileListCurrentPage extends React.Component {
           parser={parser}
           component={TableSimple}
           settings={settings}
-          search={(search && search.length) >= (settings.minCharSearch || 3)}
+          search={(search && search.length) >= (settings.minCharSearch || 3) ? search : undefined}
           currentPage={currentPage}
           perPage={perPage}
           onChangePage={(currentPageNow) => this.setState({ currentPage: currentPageNow })}

@@ -19,7 +19,7 @@ const action = (args, party) => {
   if (!(tenant.status === 'Draft' || tenant.status === 'Queue'))
     throw new Error(`[${publishName}] Tenant cannot be edited anymore`);
 
-  return processTenantToActive(tenant, party);
+  return processTenantToActive(party, tenant);
 };
 
 const setTenantStatusToActive = (options, resolve, reject) => {

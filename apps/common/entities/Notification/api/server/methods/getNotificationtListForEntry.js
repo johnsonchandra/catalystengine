@@ -23,7 +23,7 @@ Meteor.methods({
         status: 'Active',
         ...ownerQuery(tenant.owner),
       },
-      { sort: { updatedAt: 1 } },
+      { sort: { createdAt: 1 } },
     ).fetch();
 
     const options = parseDocs(notifications || [], [

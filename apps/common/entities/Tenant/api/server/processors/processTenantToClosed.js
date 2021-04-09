@@ -2,7 +2,7 @@ import Tenant from '../../index';
 
 import entityUpdate from '../../../../../helpers/server/entityUpdate';
 
-const processTenantToClosed = (tenant, party) => {
+const processTenantToClosed = (party, tenant) => {
   let timestamp = new Date();
 
   // set to processing, this is to prevent race condition, since we havent used mongodb transaction yet

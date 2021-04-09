@@ -1,24 +1,32 @@
 import Counter from '../../entities/Counter/api';
 
 import entityInsert from './entityInsert';
+import ownerQuery from '../ownerQuery';
 
-const getCounter = (type, party, owner) => {
+const getCounter = (name, type, party, owner) => {
   let counter = Counter.findOne({
+    name,
     type,
-    'owner._id': owner._id,
-    'owner.type': owner.type,
+    ...ownerQuery(owner),
   });
   if (!counter) {
     counter = {
+      name,
       type,
       counter: 1,
     };
-    counter._id = entityInsert(Counter, counter, 'create new Counter', party, owner);
+    counter._id = entityInsert(
+      Counter,
+      counter,
+      `create new Counter with name: ${name} type: ${type}`,
+      party,
+      owner,
+    );
   }
 
   Counter.update({ _id: counter._id }, { $inc: { counter: 1 } });
 
-  return counter.counter;
+  return counter;
 };
 
 export default getCounter;

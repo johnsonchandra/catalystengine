@@ -4,6 +4,7 @@ import { iso, timeago } from '../../../../helpers/dates';
 const EntityParser = (docs, settings) => {
   return parseDocs(docs, [
     { from: '_id', to: '_id' },
+    { from: 'entityName', to: 'entityName' },
     { from: 'nr', to: 'nr' },
     { from: 'name', to: 'name' },
     {

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import 'moment-timezone';
+import 'moment/locale/id';
 
 // monthDayYear 'MMMM Do, YYYY'
 // monthDayYearAtTime 'MMMM Do, YYYY [at] hh:mm a'
@@ -72,4 +73,24 @@ export const countDiffDay = (startDate, endDate, timezone, addDays) => {
 
   const diffDay = thruDateMoment.diff(fromDateMoment, 'days');
   return diffDay + (addDays || 0);
+};
+
+export const parseFromDateThruDateFromArgs = (args, timezone) => {
+  const now = moment(new Date()).tz(timezone);
+  // let fromDate = new Date(now.year(), now.month(), 1); toggle this if default is 1st of the month
+  let fromDate = new Date(now.year(), now.month(), now.date());
+  let thruDate = new Date(now.year(), now.month(), now.date());
+  thruDate.setDate(thruDate.getDate() + 1);
+
+  if (args.fromDate) {
+    const fromMoment = moment(new Date(args.fromDate)).tz(timezone);
+    fromDate = new Date(fromMoment.year(), fromMoment.month(), fromMoment.date());
+  }
+
+  if (args.thruDate) {
+    const thruMoment = moment(new Date(args.thruDate)).tz(timezone);
+    thruDate = new Date(thruMoment.year(), thruMoment.month(), thruMoment.date());
+  }
+
+  return { fromDate, thruDate };
 };

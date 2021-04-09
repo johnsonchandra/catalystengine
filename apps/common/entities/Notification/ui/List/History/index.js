@@ -85,7 +85,7 @@ export default withTrackerSsr((props) => {
       perPage: props.perPage,
       currentPage: props.currentPage,
       sort: {
-        nr: 1,
+        updatedAt: -1,
       },
     };
 

@@ -1,4 +1,10 @@
 export default `
+  type reportEntity {
+    timestamp: String
+    total: String
+    docs: String
+  }
+  
   type Ref {
     _id: String
     nr: String
